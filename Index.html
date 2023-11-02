@@ -4,8 +4,318 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PMPML</title>
+    <!-- Tailwind Css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- FlowBite CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Style for the dropdown content */
+      .dropdown-content {
+        display: none;
+      }
+
+      .dropdown.active .dropdown-content {
+        display: block;
+      }
+    </style>
   </head>
-  <body>
-    <h1 class="first_class">First Commit</h1>
+  <body class="w-full">
+    <!-- Navigation Bar -->
+    <nav class="bg-green-500 p-2 flex w-full h-full">
+      <div class="w-3/6 h-full flex justify-start items-center">
+        <div class="flex">
+          <a href="/" class="text-white flex items-center">
+            <img
+              src="images/PMPML_LOGO.jpeg"
+              alt="PMPML Logo"
+              class="h-16 w-16 mr-2 rounded-full"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="w-3/6 mx-2 h-full flex flex-col space-y-3">
+        <div class="container mx-auto flex justify-end items-center h-3/6">
+          <div class="hidden lg:block">
+            <div class="text-black mr-4 bg-white p-1 px-2 rounded-2xl">
+              Contact Number: +91 123-456-7890
+            </div>
+          </div>
+          <div class="relative group dropdown">
+            <button class="text-black bg-white py-1 px-2 rounded">Login</button>
+            <ul
+              class="dropdown-content absolute right-0 mt-2 space-y-2 bg-white text-gray-900 p-1 rounded bg-blend-color-burn"
+            >
+              <li><a href="#">User</a></li>
+              <li><a href="#">Admin</a></li>
+              <li><a href="#">Super Admin</a></li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="container mx-auto lg:flex justify-between items-center h-3/6"
+        >
+          <div class="relative group"></div>
+          <div class="lg:flex space-x-4 justify-center items-center">
+            <div class="relative group dropdown">
+              <button class="text-white">Services</button>
+              <ul
+                class="dropdown-content absolute right-0 mt-2 space-y-2 bg-white text-gray-900 p-1 rounded bg-blend-color-burn"
+              >
+                <li><a href="#">Charts</a></li>
+                <li><a href="#">Schedulers</a></li>
+                <li><a href="#">Buses</a></li>
+                <!-- Add more services as needed -->
+              </ul>
+            </div>
+            <div class="group">
+              <a href="#" class="text-white">Complaint</a>
+            </div>
+            <div class="group">
+              <a href="#" class="text-white">Feedback</a>
+            </div>
+            <div class="group">
+              <a href="#" class="text-white">Chatbot</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Notifcation bar -->
+
+    <div class="bg-black text-white p-2">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <svg
+            class="h-6 w-6 fill-current mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 17v4m0 0a8 8 0 100-16 8 8 0 000 16z"
+            />
+          </svg>
+          <span>Notification:</span>
+        </div>
+        <marquee class="" scrollamount="5">
+          <div class="flex space-x-4">
+            <div class="flex justify-between items-center">
+              <img src="images/new.gif" class="h-8 w-16 mx-2" /> दिनांक २३ ते २९
+              ऑक्टोबर पर्यंत मार्गावरील बस ब्रेकडाऊन व महसूल संबंधित माहिती |
+            </div>
+            <div class="flex justify-between items-center">
+              <img src="images/new.gif" class="h-8 w-16 mx-2" /> दिनांक २३ ते २९
+              ऑक्टोबर पर्यंत मार्गावरील बस ब्रेकडाऊन व महसूल संबंधित माहिती |
+            </div>
+            <div class="flex justify-between items-center">
+              <img src="images/new.gif" class="h-8 w-16 mx-2" /> दिनांक २३ ते २९
+              ऑक्टोबर पर्यंत मार्गावरील बस ब्रेकडाऊन व महसूल संबंधित माहिती |
+            </div>
+            <div class="flex justify-between items-center">
+              <img src="images/new.gif" class="h-8 w-16 mx-2" /> दिनांक २३ ते २९
+              ऑक्टोबर पर्यंत मार्गावरील बस ब्रेकडाऊन व महसूल संबंधित माहिती |
+            </div>
+          </div>
+        </marquee>
+        <button class="text-white text-sm">Show All Notifications</button>
+      </div>
+    </div>
+
+    <div class="w-full p-4 justify-around flex">
+      <div class="w-9/12 rounded-lg p-4 inline-block">
+        <div
+          id="default-carousel"
+          class="relative w-full"
+          data-carousel="slide"
+        >
+          <!-- Carousel wrapper -->
+          <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+            <!-- Item 1 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img
+                src="images/bus/busposter1.jpg"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                alt="..."
+              />
+            </div>
+            <!-- Item 2 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img
+                src="images/bus/busposter4.jpg"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                alt="..."
+              />
+            </div>
+            <!-- Item 3 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img
+                src="images/bus/busposter2.jpg"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                alt="..."
+              />
+            </div>
+            <!-- Item 4 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img
+                src="images/bus/busposter3.jpg"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                alt="..."
+              />
+            </div>
+            <!-- Item 5 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img
+                src="images/bus/busposter3.jpg"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                alt="..."
+              />
+            </div>
+          </div>
+          <!-- Slider indicators -->
+          <div
+            class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2"
+          >
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="true"
+              aria-label="Slide 1"
+              data-carousel-slide-to="0"
+            ></button>
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="false"
+              aria-label="Slide 2"
+              data-carousel-slide-to="1"
+            ></button>
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="false"
+              aria-label="Slide 3"
+              data-carousel-slide-to="2"
+            ></button>
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="false"
+              aria-label="Slide 4"
+              data-carousel-slide-to="3"
+            ></button>
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="false"
+              aria-label="Slide 5"
+              data-carousel-slide-to="4"
+            ></button>
+          </div>
+          <!-- Slider controls -->
+          <button
+            type="button"
+            class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-prev
+          >
+            <span
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+            >
+              <svg
+                class="w-4 h-4 text-white dark:text-gray-800"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 1 1 5l4 4"
+                />
+              </svg>
+              <span class="sr-only">Previous</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-next
+          >
+            <span
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+            >
+              <svg
+                class="w-4 h-4 text-white dark:text-gray-800"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 9 4-4-4-4"
+                />
+              </svg>
+              <span class="sr-only">Next</span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="w-3/12 flex justify-center items-center p-4 inline-block">
+        <div
+          class="flex flex-col w-5/6 shadow shadow-md bg-white inline-block h-5/6 border rounded-2xl"
+        >
+          <div
+            class="h-1/6 bg-black text-white flex justify-center items-center rounded-t-2xl w-full"
+          >
+            BUS INFORMATION
+          </div>
+          <div class="h-5/6 rounded-b-2xl bg-green-100">
+            <div
+              class="max-w-md h-full flex flex-col justify-center items-center mx-auto p-4 border rounded-lg shadow-md"
+            >
+              <h1 class="text-xl font-semibold mb-4">Bus Number</h1>
+              <div class="flex flex-col">
+                <input
+                  type="number"
+                  class="w-full p-2 border rounded-t-lg"
+                  placeholder="Enter Bus Number"
+                />
+                <button class="bg-blue-500 text-white p-1 rounded-b-lg">
+                  SUBMIT
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const dropdownButtons = document.querySelectorAll(".dropdown button");
+      dropdownButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          button.parentElement.classList.toggle("active");
+        });
+      });
+    </script>
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
   </body>
 </html>
