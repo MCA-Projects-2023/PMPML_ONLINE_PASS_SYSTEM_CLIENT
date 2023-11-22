@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Tickets</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+      <!-- Search Form -->
+      <form id="searchForm" class="mb-4">
+        <div class="md:flex space-x-4">
+          <div class="md:w-1/2">
+            <label
+              for="adharCard"
+              class="block text-sm font-medium text-gray-700"
+              >Adhar Card</label
+            >
+            <input
+              type="text"
+              id="adharCard"
+              name="adharCard"
+              class="mt-1 p-2 block w-full border rounded-md"
+            />
+          </div>
+          <div class="md:w-1/2">
+            <label
+              for="mobileNumber"
+              class="block text-sm font-medium text-gray-700"
+              >Mobile Number</label
+            >
+            <input
+              type="text"
+              id="mobileNumber"
+              name="mobileNumber"
+              class="mt-1 p-2 block w-full border rounded-md"
+            />
+          </div>
+        </div>
+        <button
+          type="button"
+          onclick="searchTickets()"
+          class="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Search Tickets
+        </button>
+      </form>
+
+      <!-- Tickets Table -->
+      <div class="md:flex">
+        <div class="md:w-1/6" id="pass"></div>
+        <div class="overflow-x-auto md:w-5/6">
+          <table
+            id="ticketsTable"
+            class="min-w-full bg-white border border-gray-300"
+          >
+            <thead>
+              <tr>
+                <th class="py-2 px-4 md:border-b">Ticket ID</th>
+                <th class="py-2 px-4 md:border-b">Ticket Pass Type</th>
+                <th class="py-2 px-4 md:border-b">Ticket Amount</th>
+                <th class="py-2 px-4 md:border-b">Adhar Card</th>
+                <th class="py-2 px-4 md:border-b">Mobile Number</th>
+                <th class="py-2 px-4 md:border-b">Date</th>
+                <th class="py-2 px-4 md:border-b">View Ticket</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Ticket data will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function searchTickets() {
+        const adharCard = parseInt(document.getElementById("adharCard").value);
+        const mobileNumber = parseInt(
+          document.getElementById("mobileNumber").value
+        );
+
+        // Validate input fields (add your own validation logic)
+        if (isNaN(adharCard) || isNaN(mobileNumber)) {
+          alert("Please enter valid Adhar Card and Mobile Number");
+          return;
+        }
+
+        try {
+          // Make API request to fetch tickets based on input
+          const response = await fetch("http://localhost:3000/show_tickets", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ mobileNumber, adharCard }),
+          });
+
+          const data = await response.json();
+          console.log(data);
+
+          if (response.ok) {
+            // Populate tickets table with fetched data
+            populateTicketsTable(data.tickets);
+          } else {
+            alert(data.error || "Error fetching tickets");
+          }
+        } catch (error) {
+          console.error("Error searching tickets:", error);
+          alert("An error occurred while searching for tickets");
+        }
+      }
+
+      function populateTicketsTable(tickets) {
+        const tableBody = document.querySelector("#ticketsTable tbody");
+
+        // Clear existing table rows
+        tableBody.innerHTML = "";
+
+        // Populate table with ticket data
+        tickets.forEach((ticket) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td class="py-2 px-4 border-b">${ticket.ticketId}</td>
+                    <td class="py-2 px-4 border-b">${ticket.ticketType}</td>
+                    <td class="py-2 px-4 border-b">${calculateTicketAmount(
+                      ticket.ticketType
+                    )}</td>
+                    <td class="py-2 px-4 border-b">${
+                      "****" + ticket.adharCard.slice(-4)
+                    }</td>
+                    <td class="py-2 px-4 border-b">${
+                      "****" + ticket.mobileNumber.slice(-5)
+                    }</td>
+                  <td class="py-2 px-4 border-b">${ticket.ticketTime}</td>
+                  <td class="py-2 px-4 border-b">
+  <button onclick="viewTicket('${ticket.ticketId}', '${ticket.ticketTime}')">View Ticket</button>
+</td>
+                  `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function calculateTicketAmount(ticketType) {
+        const ticketAmounts = {
+          puneCorp: 40,
+          pimpriChinchwad: 40,
+          combined: 50,
+          puneDistrict: 120,
+          seniorCitizen: 40,
+        };
+
+        return ticketAmounts[ticketType] || 0;
+      }
+
+      function viewTicket(ticketid, tickettime) {
+  const targetElement = document.getElementById("pass");
+
+  // Define the HTML content you want to add
+  const dynamicHTML = `
+    <div class="ticket bg-white p-4 border border-gray-300 rounded-md text-center">
+      <div class="adhar-card mb-2">
+        <strong>PASS</strong>
+      </div>
+      <div class="qr-code mb-4 w-full flex justify-center">
+        <!-- Include your QR code image here -->
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketid}"
+          alt="QR Code"
+          class="max-w-full h-auto"
+        />
+      </div>
+      <div class="adhar-card mb-2">
+        <strong>${tickettime}</strong>
+      </div>
+    </div>
+  `;
+
+  // Set the innerHTML of the target element to the dynamic HTML
+  targetElement.innerHTML = dynamicHTML;
+}
+  </script>
+  </body>
+</html>

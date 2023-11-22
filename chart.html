@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div style="width: 50%; margin: 20px auto;">
+      <canvas id="ticketCategoryChart"></canvas>
+    </div>
+    <div style="width: 50%; margin: 20px auto;">
+      <canvas id="passSalesChart"></canvas>
+    </div>
+
+    <script>
+      // Mock data
+      const ticketCategoriesData = {
+        labels: ["Pune Corp", "Pimpri Chinchwad", "Combined", "Pune District", "Senior Citizen"],
+        datasets: [{
+          data: [30, 20, 15, 10, 25],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50", "#FF9800"],
+        }],
+      };
+
+      const passSalesData = {
+        labels: ["2023-11-01", "2023-11-02", "2023-11-03", "2023-11-04", "2023-11-05", "2023-11-06", "2023-11-07", "2023-11-08", "2023-11-09", "2023-11-10"],
+        datasets: [{
+          label: "Pass Sales",
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+          borderWidth: 1,
+          data: [10, 15, 8, 20, 12, 18, 25, 22, 16, 30],
+        }],
+      };
+
+      // Create pie chart
+      const ticketCategoryChart = new Chart(document.getElementById("ticketCategoryChart"), {
+        type: 'pie',
+        data: ticketCategoriesData,
+      });
+
+      // Create bar chart
+      const passSalesChart = new Chart(document.getElementById("passSalesChart"), {
+        type: 'bar',
+        data: passSalesData,
+        options: {
+          scales: {
+            x: { type: 'linear', position: 'bottom' },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

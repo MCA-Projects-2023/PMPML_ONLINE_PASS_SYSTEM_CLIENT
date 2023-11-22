@@ -51,6 +51,14 @@
         >
           Login
         </button>
+
+        <button
+          type="button"
+          onclick="loadLogin()"
+          class="mt-2 bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Load Login
+        </button>
       </form>
 
       <div id="result" class="mt-4 text-red-500"></div>
@@ -73,9 +81,20 @@
           const data = await response.json();
 
           if (response.ok) {
-            // Save token to localStorage upon successful login
-            localStorage.setItem("token", data.token);
-            document.getElementById("result").innerText = "Login successful!";
+            // Save username and authkey to localStorage upon successful login
+            localStorage.setItem("username", username);
+            localStorage.setItem("authkey", data.token);
+            document.getElementById("result").innerText = "Login successful! Redirecting...";
+            
+            // Forward to the appropriate dashboard
+            const isAdmin = username === "admin";
+            const isSuperAdmin = username === "superadmin";
+
+            if (isAdmin) {
+              window.location.href = "admin_dashboard.html";
+            } else if (isSuperAdmin) {
+              window.location.href = "superadmin_dashboard.html";
+            }
           } else {
             document.getElementById("result").innerText =
               "Login failed. Invalid credentials.";
@@ -84,6 +103,26 @@
           console.error("Error during login:", error);
           document.getElementById("result").innerText =
             "An error occurred during login.";
+        }
+      }
+
+      function loadLogin() {
+        const storedUsername = localStorage.getItem("username");
+        const storedAuthKey = localStorage.getItem("authkey");
+
+        if (storedUsername && storedAuthKey) {
+          // Check the role of the user and redirect accordingly
+          const isAdmin = storedUsername === "admin";
+          const isSuperAdmin = storedUsername === "superadmin";
+
+          if (isAdmin) {
+            window.location.href = "admin_dashboard.html";
+          } else if (isSuperAdmin) {
+            window.location.href = "superadmin_dashboard.html";
+          }
+        } else {
+          document.getElementById("result").innerText =
+            "No saved login found in localStorage.";
         }
       }
     </script>

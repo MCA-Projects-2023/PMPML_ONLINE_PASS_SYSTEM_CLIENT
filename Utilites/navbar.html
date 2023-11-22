@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>Responsive Navbar</title>
+    <style>
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100">
+
+<!-- Navbar for Desktop -->
+<nav class="desktop-nav bg-white p-4 shadow-md">
+    <div class="container mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <div class="text-xl font-bold">
+            <a href="#">Logo</a>
+        </div>
+
+        <!-- Navigation Options -->
+        <div class="space-x-4">
+            <a href="index.html" class="text-gray-700 hover:text-blue-500">Home</a>
+            <a href="#" class="text-gray-700 hover:text-blue-500">Pass</a>
+            <a href="#" class="text-gray-700 hover:text-blue-500">Tickets</a>
+            <a href="#" class="text-gray-700 hover:text-blue-500">Todays Pass</a>
+        </div>
+
+        <!-- Login Button -->
+        <button class="text-white bg-blue-500 px-4 py-2 rounded">Login</button>
+    </div>
+</nav>
+
+<!-- Navbar for Mobile -->
+<nav class="mobile-nav bg-white p-4 shadow-md">
+    <div class="container mx-auto flex items-center justify-between">
+        <!-- Navigation Options for Mobile -->
+        <div class="space-x-4">
+            <a href="#" class="text-gray-700 hover:text-blue-500">Home</a>
+            <a href="#" class="text-gray-700 hover:text-blue-500">About</a>
+            <a href="#" class="text-gray-700 hover:text-blue-500">Services</a>
+            <a href="#" class="text-gray-700 hover:text-blue-500">Contact</a>
+        </div>
+
+        <!-- Login Button for Mobile -->
+        <button class="text-white bg-blue-500 px-4 py-2 rounded">Login</button>
+    </div>
+</nav>
+
+</body>
+</html>

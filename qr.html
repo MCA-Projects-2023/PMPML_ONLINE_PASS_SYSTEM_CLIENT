@@ -1,9 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>QR Code Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <img id="qrCodeImage" src="https://api.qrserver.com/v1/create-qr-code/?data=https://labourconnect.online/">
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+<div class="w-1/2 bg-white p-8 rounded shadow-md">
+    <h2 class="text-2xl mb-4">QR Code Scanner</h2>
+    <div id="scanner-container" class="relative">
+        <!-- Scanner will be rendered here -->
+    </div>
+</div>
+
+<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get access to the camera
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(function (stream) {
+                // Create a video element to stream the camera
+                const video = document.createElement('video');
+                document.getElementById('scanner-container').appendChild(video);
+
+                // Initialize Instascan with the video element
+                const scanner = new Instascan.Scanner({ video: video });
+                scanner.addListener('scan', function (content) {
+                    alert('QR Code Scanned: ' + content);
+                    // You can do something with the scanned QR code content
+                });
+
+                // Start the camera feed
+                Instascan.Camera.getCameras().then(function (cameras) {
+                    if (cameras.length > 0) {
+                        scanner.start(cameras[0]);
+                    } else {
+                        console.error('No cameras found.');
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.error('Error accessing camera:', error);
+            });
+    });
+</script>
+
 </body>
 </html>
