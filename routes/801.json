@@ -1,0 +1,333 @@
+{
+  "route_id": "801",
+  "trips": [
+    {
+      "trip_id": "NORMAL_801_GhokulNagar To Viddya Niketan (ChandraBhaga Nagar)_Up-0640_0",
+      "trips": [
+        {
+          "arrival_time": "06:40:00",
+          "departure_time": "06:40:00",
+          "stop_id": "33020",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:42:53",
+          "departure_time": "06:43:23",
+          "stop_id": "39297",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:47:23",
+          "departure_time": "06:47:49",
+          "stop_id": "32828",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:52:38",
+          "departure_time": "06:53:08",
+          "stop_id": "34525",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:55:37",
+          "departure_time": "06:56:07",
+          "stop_id": "32861",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:57:29",
+          "departure_time": "06:57:59",
+          "stop_id": "35304",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "07:00:33",
+          "departure_time": "07:00:33",
+          "stop_id": "39992",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_801_Viddya Niketan (ChandraBhaga Nagar) To GhokulNagar_Up-1330_0",
+      "trips": [
+        {
+          "arrival_time": "13:30:00",
+          "departure_time": "13:30:00",
+          "stop_id": "39993",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "13:32:41",
+          "departure_time": "13:33:11",
+          "stop_id": "34393",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "13:34:29",
+          "departure_time": "13:34:59",
+          "stop_id": "31822",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "13:37:30",
+          "departure_time": "13:38:00",
+          "stop_id": "31533",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "13:42:49",
+          "departure_time": "13:43:19",
+          "stop_id": "34091",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "13:45:08",
+          "departure_time": "13:45:38",
+          "stop_id": "38794",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "13:48:40",
+          "departure_time": "13:48:40",
+          "stop_id": "35464",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_801_GhokulNagar To Viddya Niketan (ChandraBhaga Nagar)_Up-0940_0",
+      "trips": [
+        {
+          "arrival_time": "09:40:00",
+          "departure_time": "09:40:00",
+          "stop_id": "33020",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "09:42:53",
+          "departure_time": "09:43:23",
+          "stop_id": "39297",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "09:47:23",
+          "departure_time": "09:47:49",
+          "stop_id": "32828",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "09:52:38",
+          "departure_time": "09:53:08",
+          "stop_id": "34525",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "09:55:37",
+          "departure_time": "09:56:07",
+          "stop_id": "32861",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "09:57:29",
+          "departure_time": "09:57:59",
+          "stop_id": "35304",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:00:33",
+          "departure_time": "10:00:33",
+          "stop_id": "39992",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_801_Viddya Niketan (ChandraBhaga Nagar) To GhokulNagar_Up-1735_0",
+      "trips": [
+        {
+          "arrival_time": "17:35:00",
+          "departure_time": "17:35:00",
+          "stop_id": "39993",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:37:41",
+          "departure_time": "17:38:11",
+          "stop_id": "34393",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:39:29",
+          "departure_time": "17:39:59",
+          "stop_id": "31822",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:42:30",
+          "departure_time": "17:43:00",
+          "stop_id": "31533",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:47:49",
+          "departure_time": "17:48:19",
+          "stop_id": "34091",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:50:08",
+          "departure_time": "17:50:38",
+          "stop_id": "38794",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:53:40",
+          "departure_time": "17:53:40",
+          "stop_id": "35464",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    }
+  ]
+}

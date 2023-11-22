@@ -1,0 +1,389 @@
+{
+  "route_id": "93",
+  "trips": [
+    {
+      "trip_id": "NORMAL_93_Kothrud Depot To Deccan Gymkhana_Down-0435_0",
+      "trips": [
+        {
+          "arrival_time": "04:35:00",
+          "departure_time": "04:35:00",
+          "stop_id": "38457",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:35:06",
+          "departure_time": "04:35:19",
+          "stop_id": "736",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:35:42",
+          "departure_time": "04:35:52",
+          "stop_id": "39182",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:36:45",
+          "departure_time": "04:37:00",
+          "stop_id": "39150",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:38:03",
+          "departure_time": "04:38:40",
+          "stop_id": "39030",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:38:54",
+          "departure_time": "04:39:20",
+          "stop_id": "38769",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:39:48",
+          "departure_time": "04:40:20",
+          "stop_id": "38770",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:40:37",
+          "departure_time": "04:40:49",
+          "stop_id": "38771",
+          "stop_sequence": "8",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:41:59",
+          "departure_time": "04:42:14",
+          "stop_id": "38772",
+          "stop_sequence": "9",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:42:48",
+          "departure_time": "04:43:15",
+          "stop_id": "38773",
+          "stop_sequence": "10",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:44:17",
+          "departure_time": "04:44:54",
+          "stop_id": "38774",
+          "stop_sequence": "11",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:46:04",
+          "departure_time": "04:46:21",
+          "stop_id": "38775",
+          "stop_sequence": "12",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:47:48",
+          "departure_time": "04:48:20",
+          "stop_id": "38776",
+          "stop_sequence": "13",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:48:51",
+          "departure_time": "04:49:26",
+          "stop_id": "38777",
+          "stop_sequence": "14",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:51:10",
+          "departure_time": "04:51:30",
+          "stop_id": "38778",
+          "stop_sequence": "15",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:57:34",
+          "departure_time": "04:58:21",
+          "stop_id": "38965",
+          "stop_sequence": "16",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "04:59:31",
+          "departure_time": "04:59:31",
+          "stop_id": "39222",
+          "stop_sequence": "17",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_93_Deccan Gymkhana To Kothrud Depot_Up-1115_0",
+      "trips": [
+        {
+          "arrival_time": "11:15:00",
+          "departure_time": "11:15:00",
+          "stop_id": "39222",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:18:02",
+          "departure_time": "11:18:57",
+          "stop_id": "39445",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:19:34",
+          "departure_time": "11:19:51",
+          "stop_id": "39276",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:20:37",
+          "departure_time": "11:20:56",
+          "stop_id": "39277",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:22:01",
+          "departure_time": "11:23:12",
+          "stop_id": "39372",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:24:48",
+          "departure_time": "11:25:20",
+          "stop_id": "39278",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:26:47",
+          "departure_time": "11:27:14",
+          "stop_id": "39279",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:28:13",
+          "departure_time": "11:28:39",
+          "stop_id": "39280",
+          "stop_sequence": "8",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:29:11",
+          "departure_time": "11:29:34",
+          "stop_id": "39281",
+          "stop_sequence": "9",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:30:01",
+          "departure_time": "11:30:22",
+          "stop_id": "39282",
+          "stop_sequence": "10",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:30:43",
+          "departure_time": "11:30:58",
+          "stop_id": "39283",
+          "stop_sequence": "11",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:31:17",
+          "departure_time": "11:31:38",
+          "stop_id": "39373",
+          "stop_sequence": "12",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:32:17",
+          "departure_time": "11:32:50",
+          "stop_id": "39507",
+          "stop_sequence": "13",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:33:49",
+          "departure_time": "11:34:34",
+          "stop_id": "39621",
+          "stop_sequence": "14",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:35:35",
+          "departure_time": "11:35:48",
+          "stop_id": "39657",
+          "stop_sequence": "15",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:36:31",
+          "departure_time": "11:37:00",
+          "stop_id": "772",
+          "stop_sequence": "16",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:37:21",
+          "departure_time": "11:37:21",
+          "stop_id": "39285",
+          "stop_sequence": "17",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,557 @@
+{
+  "route_id": "901",
+  "trips": [
+    {
+      "trip_id": "NORMAL_901_Kondhwa (Sheetal Petrol Pump) To Pune Station Urdu Vidyaniketan shala 12_Up-0630_0",
+      "trips": [
+        {
+          "arrival_time": "06:30:00",
+          "departure_time": "06:30:00",
+          "stop_id": "40284",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:30:10",
+          "departure_time": "06:30:40",
+          "stop_id": "40285",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:31:03",
+          "departure_time": "06:31:33",
+          "stop_id": "40286",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:45:25",
+          "departure_time": "06:45:55",
+          "stop_id": "40287",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:50:40",
+          "departure_time": "06:50:40",
+          "stop_id": "40288",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_901_Pune Station Urdu Vidyaniketan Shala 12 To Kondhwa_Down-1140_0",
+      "trips": [
+        {
+          "arrival_time": "11:40:00",
+          "departure_time": "11:40:00",
+          "stop_id": "40289",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:44:46",
+          "departure_time": "11:45:16",
+          "stop_id": "40290",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:59:08",
+          "departure_time": "11:59:38",
+          "stop_id": "40291",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:59:59",
+          "departure_time": "12:00:29",
+          "stop_id": "40292",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "12:00:40",
+          "departure_time": "12:00:40",
+          "stop_id": "40293",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_901_Pune Station Urdu Vidyaniketan Shala 12 To Kondhwa_Down-1030_0",
+      "trips": [
+        {
+          "arrival_time": "10:30:00",
+          "departure_time": "10:30:00",
+          "stop_id": "40289",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:34:46",
+          "departure_time": "10:35:16",
+          "stop_id": "40290",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:49:08",
+          "departure_time": "10:49:38",
+          "stop_id": "40291",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:49:59",
+          "departure_time": "10:50:29",
+          "stop_id": "40292",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:50:40",
+          "departure_time": "10:50:40",
+          "stop_id": "40293",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_901_Ramwadi To KhuleWadi Viddya Niketan School_Up-0620_0",
+      "trips": [
+        {
+          "arrival_time": "06:20:00",
+          "departure_time": "06:20:00",
+          "stop_id": "32512",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:21:17",
+          "departure_time": "06:21:47",
+          "stop_id": "33751",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:24:23",
+          "departure_time": "06:24:53",
+          "stop_id": "35217",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:26:39",
+          "departure_time": "06:27:09",
+          "stop_id": "35683",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:27:49",
+          "departure_time": "06:28:19",
+          "stop_id": "40136",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:29:54",
+          "departure_time": "06:30:24",
+          "stop_id": "35687",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:36:11",
+          "departure_time": "06:36:41",
+          "stop_id": "40133",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "06:41:51",
+          "departure_time": "06:41:51",
+          "stop_id": "40137",
+          "stop_sequence": "8",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_901_KhuleWadi Viddya Niketan School To Ramwadi_Down-1120_0",
+      "trips": [
+        {
+          "arrival_time": "11:20:00",
+          "departure_time": "11:20:00",
+          "stop_id": "40137",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:24:13",
+          "departure_time": "11:24:43",
+          "stop_id": "40133",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:29:18",
+          "departure_time": "11:29:48",
+          "stop_id": "40131",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:32:40",
+          "departure_time": "11:33:10",
+          "stop_id": "40135",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:33:47",
+          "departure_time": "11:34:17",
+          "stop_id": "32898",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:36:02",
+          "departure_time": "11:36:32",
+          "stop_id": "35096",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:38:57",
+          "departure_time": "11:39:27",
+          "stop_id": "31640",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:40:55",
+          "departure_time": "11:40:55",
+          "stop_id": "32512",
+          "stop_sequence": "8",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_901_Ramwadi To KhuleWadi Viddya Niketan School_Up-1050_0",
+      "trips": [
+        {
+          "arrival_time": "10:50:00",
+          "departure_time": "10:50:00",
+          "stop_id": "32512",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:51:17",
+          "departure_time": "10:51:47",
+          "stop_id": "33751",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:54:23",
+          "departure_time": "10:54:53",
+          "stop_id": "35217",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:56:39",
+          "departure_time": "10:57:09",
+          "stop_id": "35683",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:57:49",
+          "departure_time": "10:58:19",
+          "stop_id": "40136",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "10:59:54",
+          "departure_time": "11:00:24",
+          "stop_id": "35687",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:06:11",
+          "departure_time": "11:06:41",
+          "stop_id": "40133",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "11:11:51",
+          "departure_time": "11:11:51",
+          "stop_id": "40137",
+          "stop_sequence": "8",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    },
+    {
+      "trip_id": "NORMAL_901_KhuleWadi Viddya Niketan School To Ramwadi_Down-1740_0",
+      "trips": [
+        {
+          "arrival_time": "17:40:00",
+          "departure_time": "17:40:00",
+          "stop_id": "40137",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:44:13",
+          "departure_time": "17:44:43",
+          "stop_id": "40133",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:49:18",
+          "departure_time": "17:49:48",
+          "stop_id": "40131",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:52:40",
+          "departure_time": "17:53:10",
+          "stop_id": "40135",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:53:47",
+          "departure_time": "17:54:17",
+          "stop_id": "32898",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:56:02",
+          "departure_time": "17:56:32",
+          "stop_id": "35096",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "17:58:57",
+          "departure_time": "17:59:27",
+          "stop_id": "31640",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "18:00:55",
+          "departure_time": "18:00:55",
+          "stop_id": "32512",
+          "stop_sequence": "8",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    }
+  ]
+}

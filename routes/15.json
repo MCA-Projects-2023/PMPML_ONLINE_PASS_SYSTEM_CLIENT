@@ -1,0 +1,417 @@
+{
+  "route_id": "15",
+  "trips": [
+    {
+      "trip_id": "NORMAL_15_Wagholi To Swargate_Down-2100_0",
+      "trips": [
+        {
+          "arrival_time": "21:00:00",
+          "departure_time": "21:00:00",
+          "stop_id": "26214",
+          "stop_sequence": "1",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:00:52",
+          "departure_time": "21:01:34",
+          "stop_id": "39489",
+          "stop_sequence": "2",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:02:34",
+          "departure_time": "21:03:06",
+          "stop_id": "39558",
+          "stop_sequence": "3",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:03:38",
+          "departure_time": "21:03:51",
+          "stop_id": "39557",
+          "stop_sequence": "4",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:05:47",
+          "departure_time": "21:06:33",
+          "stop_id": "2033",
+          "stop_sequence": "5",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:07:28",
+          "departure_time": "21:07:53",
+          "stop_id": "2031",
+          "stop_sequence": "6",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:09:04",
+          "departure_time": "21:09:16",
+          "stop_id": "39554",
+          "stop_sequence": "7",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:10:53",
+          "departure_time": "21:11:30",
+          "stop_id": "39553",
+          "stop_sequence": "8",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:13:28",
+          "departure_time": "21:13:43",
+          "stop_id": "32232",
+          "stop_sequence": "9",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:15:02",
+          "departure_time": "21:15:14",
+          "stop_id": "32264",
+          "stop_sequence": "10",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:18:03",
+          "departure_time": "21:18:35",
+          "stop_id": "32898",
+          "stop_sequence": "11",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:20:12",
+          "departure_time": "21:20:33",
+          "stop_id": "39453",
+          "stop_sequence": "12",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:21:07",
+          "departure_time": "21:21:27",
+          "stop_id": "1620",
+          "stop_sequence": "13",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:24:55",
+          "departure_time": "21:25:17",
+          "stop_id": "39523",
+          "stop_sequence": "14",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:25:48",
+          "departure_time": "21:26:00",
+          "stop_id": "40180",
+          "stop_sequence": "15",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:26:30",
+          "departure_time": "21:26:53",
+          "stop_id": "39452",
+          "stop_sequence": "16",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:31:01",
+          "departure_time": "21:31:37",
+          "stop_id": "39444",
+          "stop_sequence": "17",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:33:56",
+          "departure_time": "21:34:20",
+          "stop_id": "39442",
+          "stop_sequence": "18",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:41:00",
+          "departure_time": "21:41:53",
+          "stop_id": "39441",
+          "stop_sequence": "19",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:42:40",
+          "departure_time": "21:42:56",
+          "stop_id": "39539",
+          "stop_sequence": "20",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:43:15",
+          "departure_time": "21:43:38",
+          "stop_id": "39440",
+          "stop_sequence": "21",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:44:58",
+          "departure_time": "21:45:31",
+          "stop_id": "39439",
+          "stop_sequence": "22",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:46:02",
+          "departure_time": "21:46:52",
+          "stop_id": "4093",
+          "stop_sequence": "23",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:47:26",
+          "departure_time": "21:47:57",
+          "stop_id": "39316",
+          "stop_sequence": "24",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:49:28",
+          "departure_time": "21:50:11",
+          "stop_id": "38820",
+          "stop_sequence": "25",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "21:56:55",
+          "departure_time": "21:59:31",
+          "stop_id": "38821",
+          "stop_sequence": "26",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:01:01",
+          "departure_time": "22:01:41",
+          "stop_id": "38822",
+          "stop_sequence": "27",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:02:41",
+          "departure_time": "22:03:10",
+          "stop_id": "38823",
+          "stop_sequence": "28",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:04:20",
+          "departure_time": "22:04:32",
+          "stop_id": "38824",
+          "stop_sequence": "29",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:05:29",
+          "departure_time": "22:05:48",
+          "stop_id": "38825",
+          "stop_sequence": "30",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:12:49",
+          "departure_time": "22:13:11",
+          "stop_id": "2212",
+          "stop_sequence": "31",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:15:38",
+          "departure_time": "22:16:04",
+          "stop_id": "39271",
+          "stop_sequence": "32",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:17:24",
+          "departure_time": "22:18:00",
+          "stop_id": "1987",
+          "stop_sequence": "33",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:19:47",
+          "departure_time": "22:20:04",
+          "stop_id": "39537",
+          "stop_sequence": "34",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:20:51",
+          "departure_time": "22:21:04",
+          "stop_id": "39485",
+          "stop_sequence": "35",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:21:39",
+          "departure_time": "22:22:14",
+          "stop_id": "39663",
+          "stop_sequence": "36",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        },
+        {
+          "arrival_time": "22:24:21",
+          "departure_time": "22:24:21",
+          "stop_id": "467",
+          "stop_sequence": "37",
+          "stop_headsign": "",
+          "pickup_type": "",
+          "drop_off_type": "",
+          "shape_dist_traveled": "",
+          "timepoint": "\r"
+        }
+      ]
+    }
+  ]
+}

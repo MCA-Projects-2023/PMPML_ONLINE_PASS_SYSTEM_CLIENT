@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PMPML</title>
+    <!-- Tailwind Css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- FlowBite CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Style for the dropdown content */
+      .dropdown-content {
+        display: none;
+      }
+
+      .dropdown.active .dropdown-content {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="w-full">
+    <!-- Navigation Bar -->
+    <nav class="bg-green-500 p-2 flex w-full h-full">
+      <div class="w-3/6 h-full flex justify-start items-center">
+        <div class="flex">
+          <a href="/" class="text-white flex items-center">
+            <img
+              src="images/PMPML_LOGO.jpeg"
+              alt="PMPML Logo"
+              class="h-16 w-16 mr-2 rounded-full"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="w-3/6 mx-2 h-full flex flex-col space-y-3">
+        <div class="container mx-auto flex justify-end items-center h-3/6">
+          <div class="hidden lg:block">
+            <div class="text-black mr-4 bg-white p-1 px-2 rounded-2xl">
+              Contact Number: +91 123-456-7890
+            </div>
+          </div>
+          <div class="relative group dropdown">
+            <button class="text-black bg-white py-1 px-2 rounded">Login</button>
+            <ul
+              class="dropdown-content absolute right-0 mt-2 space-y-2 bg-white text-gray-900 p-1 rounded bg-blend-color-burn"
+            >
+              <li><a href="#">User</a></li>
+              <li><a href="#">Admin</a></li>
+              <li><a href="#">Super Admin</a></li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="container mx-auto lg:flex justify-between items-center h-3/6"
+        >
+          <div class="relative group"></div>
+          <div class="lg:flex space-x-4 justify-center items-center">
+            <div class="relative group dropdown">
+              <button class="text-white">Services</button>
+              <ul
+                class="dropdown-content absolute right-0 mt-2 space-y-2 bg-white text-gray-900 p-1 rounded bg-blend-color-burn"
+              >
+                <li><a href="#">Charts</a></li>
+                <li><a href="#">Schedulers</a></li>
+                <li><a href="#">Buses</a></li>
+                <!-- Add more services as needed -->
+              </ul>
+            </div>
+            <div class="group">
+              <a href="#" class="text-white">Complaint</a>
+            </div>
+            <div class="group">
+              <a href="#" class="text-white">Feedback</a>
+            </div>
+            <div class="group">
+              <a href="#" class="text-white">Chatbot</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Complaint Form
+     -->
+
+    <div class="flex justify-center items-center p-4">
+      <div class="lg:w-4/6 w-5/6 rounded-2xl">
+        <div class="bg-black text-white p-4 rounded-t-2xl">
+          <h1 class="text-2xl">Complaint Form</h1>
+        </div>
+        <div class="bg-gray-100 p-4 rounded-b-2xl px-8">
+          <form class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="firstName">First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  class="w-full p-2 border rounded-2xl"
+                  placeholder="Enter First Name"
+                />
+              </div>
+              <div>
+                <label for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  class="w-full p-2 border rounded-2xl"
+                  placeholder="Enter Last Name"
+                />
+              </div>
+            </div>
+            <div>
+              <label for="mobileNumber">Mobile Number</label>
+              <input
+                type="text"
+                id="mobileNumber"
+                class="w-full p-2 border rounded-2xl"
+                placeholder="Enter Mobile Number"
+              />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="w-full p-2 border rounded-2xl"
+                placeholder="Enter Email"
+              />
+            </div>
+            <div>
+              <label for="complaintType">Complaint Type</label>
+              <select id="complaintType" class="w-full p-2 border rounded-2xl">
+                <option value="option1">Suggestion</option>
+                <option value="option2">Feedback</option>
+                <option value="option3">Complaint</option>
+              </select>
+            </div>
+            <div>
+              <label for="busNumber">Bus Number</label>
+              <input
+                type="text"
+                id="busNumber"
+                class="w-full p-2 border rounded-2xl"
+                placeholder="Enter Bus Number"
+              />
+            </div>
+            <div>
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                class="w-full p-2 border rounded-2xl"
+                placeholder="Enter Description"
+              ></textarea>
+            </div>
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-opacity-50"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const dropdownButtons = document.querySelectorAll(".dropdown button");
+      dropdownButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          button.parentElement.classList.toggle("active");
+        });
+      });
+    </script>
+    <!-- Complaint Form jS -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+    
+        form.addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent the default form submission
+    
+          // Gather form data
+          const firstNameInput = form.querySelector('#firstName');
+          const lastNameInput = form.querySelector('#lastName');
+          const mobileNumberInput = form.querySelector('#mobileNumber');
+          const emailInput = form.querySelector('#email');
+          const complaintTypeSelect = form.querySelector('#complaintType');
+          const busNumberInput = form.querySelector('#busNumber');
+          const descriptionTextarea = form.querySelector('#description');
+    
+          const firstName = firstNameInput.value;
+          const lastName = lastNameInput.value;
+          const mobileNumber = mobileNumberInput.value;
+          const email = emailInput.value;
+          const complaintType = complaintTypeSelect.value;
+          const busNumber = busNumberInput.value;
+          const description = descriptionTextarea.value;
+    
+          if (
+            firstName &&
+            lastName &&
+            mobileNumber &&
+            email &&
+            complaintType &&
+            busNumber &&
+            description
+          ) {
+            // Perform your form submission logic here
+            console.log('Form submitted successfully.');
+            
+            // Clear the form inputs
+            form.reset();
+          } else {
+            console.log('Please fill in all required fields.');
+          }
+        });
+      });
+    </script>
+    
+    
+    
+    <!-- Flowbite JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script> -->
+  </body>
+</html>

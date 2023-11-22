@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PMPL Bus Ticket Purchase</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Other head elements -->
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-firestore.js"></script>
+    <!-- Include other scripts if needed -->
+  </head>
+
+  <body class="bg-gray-100">
+    <div class="md:flex h-screen">
+      <!-- Bus Image Section -->
+      <div class="md:w-1/2 flex justify-center items-center">
+        <img src="/images/bus/buspng.png" alt="Bus" class="max-h-full" />
+      </div>
+
+      <!-- Ticket Purchase Form Section -->
+      <div class="md:w-1/2 flex justify-center items-center">
+        <form id="ticketForm" class="bg-white p-8 rounded shadow-md">
+            <h2 class="text-2xl mb-4">Purchase Bus Ticket</h2>
+    
+            <div class="mb-4">
+              <label
+                for="adharCard"
+                class="block text-gray-700 text-sm font-bold mb-2"
+              >Adhar Card Number:</label
+              >
+              <input
+                type="text"
+                id="adharCard"
+                name="adharCard"
+                class="w-full px-3 py-2 border rounded"
+                required
+              />
+              <span id="adharError" class="text-red-500"></span>
+            </div>
+    
+            <div class="mb-4">
+              <label
+                for="mobileNumber"
+                class="block text-gray-700 text-sm font-bold mb-2"
+              >Mobile Number:</label
+              >
+              <input
+                type="text"
+                id="mobileNumber"
+                name="mobileNumber"
+                class="w-full px-3 py-2 border rounded"
+                required
+              />
+              <span id="mobileError" class="text-red-500"></span>
+            </div>
+    
+            <div class="mb-4">
+              <label
+                for="ticketType"
+                class="block text-gray-700 text-sm font-bold mb-2"
+              >Select Ticket Type:</label
+              >
+              <select
+                id="ticketType"
+                name="ticketType"
+                class="w-full px-3 py-2 border rounded"
+              >
+                <option value="puneCorp">Pune Corporation (Rs. 40)</option>
+                <option value="pimpriChinchwad">Pimpri Chinchwad (Rs. 40)</option>
+                <option value="combined">
+                  Pune and Pimpri Chinchwad Combined (Rs. 50)
+                </option>
+                <option value="puneDistrict">All Over Pune District (Rs. 120)</option>
+                <option value="seniorCitizen">Senior Citizen (Rs. 40)</option>
+              </select>
+            </div>
+    
+            <!-- Add other interesting elements here -->
+    
+            <button
+              type="button"
+              onclick="validateAndInitiatePayment()"
+              class="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Purchase Ticket
+            </button>
+          </form>
+      </div>
+    </div>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+          function validateAndInitiatePayment() {
+        const adharCard = document.getElementById("adharCard").value;
+        const mobileNumber = document.getElementById("mobileNumber").value;
+
+        // Validate Adhar Card and Mobile Number lengths
+        if (adharCard.length !== 12) {
+          document.getElementById("adharError").innerText =
+            "Adhar Card must be 12 digits";
+          return;
+        } else {
+          document.getElementById("adharError").innerText = "";
+        }
+
+        if (mobileNumber.length !== 10) {
+          document.getElementById("mobileError").innerText =
+            "Mobile Number must be 10 digits";
+          return;
+        } else {
+          document.getElementById("mobileError").innerText = "";
+        }
+
+        // If validation passes, initiate Razorpay payment
+        initiatePayment();
+      }
+      function initiatePayment() {
+        // Example ticket data
+        const ticketData = {
+          adharCard: document.getElementById("adharCard").value,
+          mobileNumber: document.getElementById("mobileNumber").value,
+          ticketType: document.getElementById("ticketType").value,
+          ticketTime: new Date().toLocaleString(),
+          // Add other fields as needed
+        };
+
+        // Calculate ticket amount based on the ticket type
+        const ticketAmounts = {
+          puneCorp: 40,
+          pimpriChinchwad: 40,
+          combined: 50,
+          puneDistrict: 120,
+          seniorCitizen: 40,
+        };
+
+        const selectedTicketType = ticketData.ticketType;
+        const ticketAmount = ticketAmounts[selectedTicketType];
+
+        // Razorpay configuration
+        const options = {
+          key: "rzp_test_hohwVTs6y3uKSI",
+          amount: ticketAmount * 100, // Convert to paise
+          currency: "INR",
+          name: "PMPL Bus Service",
+          description: `Bus Ticket (${selectedTicketType})`,
+          image: "/images/bus/favicon.png",
+          handler: function (response) {
+            paymentSuccess(response, ticketData);
+          },
+          prefill: {
+            name: ticketData.adharCard,
+            email: "customer@example.com",
+            contact: ticketData.mobileNumber,
+          },
+          notes: {
+            ticketType: selectedTicketType,
+          },
+          theme: {
+            color: "#3498db",
+          },
+        };
+
+        // Open Razorpay checkout form
+        const rzp = new Razorpay(options);
+        rzp.open();
+      }
+
+      // Function to handle payment success
+      function paymentSuccess(response, ticketData) {
+        console.log("Payment successful:", response, ticketData);
+      }
+    </script>
+  </body>
+</html>
