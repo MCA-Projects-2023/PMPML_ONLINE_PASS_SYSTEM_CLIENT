@@ -7,7 +7,7 @@ const PORT = 3000;
 const SECRET_KEY = 'spv'; // Replace with a strong secret key
 const fs = require('fs/promises');
 
-
+const { v4: uuidv4 } = require('uuid');
 
 // Use CORS middleware
 app.use(cors());
@@ -54,8 +54,9 @@ app.post('/tickets', async (req, res) => {
       // Extract ticket data from the request body
       const { adharCard, mobileNumber, ticketType } = req.body;
   
-      // Create a new ticket object
+      // Create a new ticket object with a unique ID
       const newTicket = {
+        ticketId: uuidv4(), // Generate a unique ID
         adharCard,
         mobileNumber,
         ticketType,
