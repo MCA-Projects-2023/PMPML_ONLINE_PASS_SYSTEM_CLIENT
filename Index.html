@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PMPML</title>
+     <!-- Add Favicon -->
+     <link rel="icon" href="images/PMPML_LOGO.jpeg" type="image/x-icon">
+     <link rel="shortcut icon" href="images/PMPML_LOGO.jpeg" type="image/x-icon">
+     <!-- Add additional icon sizes for better compatibility -->
+     <link rel="icon" sizes="192x192" href="images/PMPML_LOGO.jpeg">
     <!-- Tailwind Css -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
@@ -32,6 +37,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css"
     />
+    <link rel="preload" href="https://widget-v4.tidiochat.com/fonts/mulish_SGhgqk3wotYKNnBQ.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
     <script src="https://cdn.tailwindcss.com/3.3.0"></script>
     <script>
       tailwind.config = {
@@ -555,7 +562,7 @@
           <div
             class="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6"
           >
-            <form>
+            <form id="contactForm">
               <div class="relative mb-6" data-te-input-wrapper-init>
                 <input
                   type="text"
@@ -821,47 +828,59 @@
         bus_number_entered = document.getElementById("bus_number_input").value;
       }
     </script>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  const contactForm = document.getElementById("contactForm");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Fetch data from form fields
+      const name = document.getElementById("exampleInput90").value;
+      const email = document.getElementById("exampleInput91").value;
+      const message = document.getElementById("exampleFormControlTextarea1").value;
+
+      // Prepare data for API
+      const formData = {
+        name: name,
+        email: email,
+        message: message
+      };
+
+      // Call function to send data to API
+      sendContactData(formData);
+    });
+  }
+});
+
+async function sendContactData(formData) {
+  try {
+    const response = await fetch("http://your-api-endpoint/contact-us", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      // Handle success, maybe show a success message to the user
+      console.log("Contact form submitted successfully!");
+    } else {
+      // Handle errors, maybe show an error message to the user
+      console.error("Error submitting contact form:", response.statusText);
+    }
+  } catch (error) {
+    // Handle network errors or other exceptions
+    console.error("Error submitting contact form:", error.message);
+  }
+}
+   </script>
 
     <script>
       // contact us
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
-
-        form.addEventListener("submit", async function (event) {
-          event.preventDefault();
-
-          // Get form data
-          const formData = new FormData(form);
-          const requestBody = {};
-          formData.forEach((value, key) => {
-            requestBody[key] = value;
-          });
-
-          // Make API call
-          try {
-            const response = await fetch("/contact-us", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(requestBody),
-            });
-
-            if (response.ok) {
-              const result = await response.json();
-              console.log(result.message); // Display success message
-            } else {
-              const errorData = await response.json();
-              console.error(
-                "Error submitting contact details:",
-                errorData.message
-              );
-            }
-          } catch (error) {
-            console.error("Error submitting contact details:", error);
-          }
-        });
-      });
 
       // Specify the URL of the JSON file
 

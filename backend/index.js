@@ -12,7 +12,6 @@ const { v4: uuidv4 } = require("uuid");
 // Use CORS middleware
 app.use(cors());
 
-
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
 
@@ -27,66 +26,64 @@ const pool = mysql.createPool({
 });
 
 // Get all tickets for(admim)
-app.get('/tickets', async (req, res) => {
+app.get("/tickets", async (req, res) => {
   try {
     // Use MySQL connection pool to execute queries
     const connection = await pool.getConnection();
     try {
       // Retrieve all tickets from the database
-      const [ticketResults] = await connection.execute('SELECT * FROM tickets');
+      const [ticketResults] = await connection.execute("SELECT * FROM tickets");
 
       // Check if any tickets were found
       if (ticketResults.length > 0) {
-        res.json({ message: 'Tickets retrieved successfully', tickets: ticketResults });
+        res.json({
+          message: "Tickets retrieved successfully",
+          tickets: ticketResults,
+        });
       } else {
-        res.status(404).json({ message: 'No tickets found' });
+        res.status(404).json({ message: "No tickets found" });
       }
     } finally {
       connection.release(); // Release the connection back to the pool
     }
   } catch (error) {
-    console.error('Error retrieving tickets:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error retrieving tickets:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-
-app.post('/add-admin', async (req, res) => {
+app.post("/add-admin", async (req, res) => {
   try {
     const { username, password } = req.body;
 
     // Hash the password before storing it in the database (for security)
-    
 
     // Insert the new admin user with hardcoded role 'admin'
     const [result] = await connection.execute(
-      'INSERT INTO users (username, password, role) VALUES (?, ?, ?)',
-      [username, password, 'admin']
+      "INSERT INTO users (username, password, role) VALUES (?, ?, ?)",
+      [username, password, "admin"]
     );
 
     // Check if the user was successfully inserted
     if (result.affectedRows === 1) {
-      res.status(201).json({ message: 'Admin user created successfully' });
+      res.status(201).json({ message: "Admin user created successfully" });
     } else {
-      res.status(500).json({ error: 'Failed to create admin user' });
+      res.status(500).json({ error: "Failed to create admin user" });
     }
   } catch (error) {
-    console.error('Error creating admin user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error creating admin user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 // Login API
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res
-      .status(400)
-      .json({
-        error: "Username and password are required in the request body",
-      });
+    return res.status(400).json({
+      error: "Username and password are required in the request body",
+    });
   }
 
   try {
@@ -127,7 +124,32 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+// get all users
+app.get("/users", async (req, res) => {
+  try {
+    // Use MySQL connection pool to execute queries
+    const connection = await pool.getConnection();
+    try {
+      // Retrieve all users from the database
+      const [userResults] = await connection.execute("SELECT * FROM users");
 
+      // Check if any users were found
+      if (userResults.length > 0) {
+        res.json({
+          message: "Users retrieved successfully",
+          users: userResults,
+        });
+      } else {
+        res.status(404).json({ message: "No users found" });
+      }
+    } finally {
+      connection.release(); // Release the connection back to the pool
+    }
+  } catch (error) {
+    console.error("Error retrieving users:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 // add Tickets
 app.post("/add_ticket", async (req, res) => {
   try {
@@ -175,15 +197,12 @@ app.post("/show_tickets", async (req, res) => {
   try {
     // Extract mobile number and adhar card number from the request body
     const { mobileNumber, adharCard } = req.body;
-    
-    console.log(mobileNumber,adharCard)
+
+    console.log(mobileNumber, adharCard);
     if (!mobileNumber || !adharCard) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Mobile number and adhar card are required in the request body",
-        });
+      return res.status(400).json({
+        error: "Mobile number and adhar card are required in the request body",
+      });
     }
 
     // Use MySQL connection pool to execute queries
@@ -191,17 +210,15 @@ app.post("/show_tickets", async (req, res) => {
     try {
       // Retrieve tickets from the database based on mobile number and adhar card number
       const [rows] = await connection.execute(
-        "SELECT * FROM tickets WHERE mobileNumber = ? AND adharCard = ? ORDER BY ticketTime ASC",
+        "SELECT * FROM tickets WHERE mobileNumber = ? AND adharCard = ? ORDER BY ticketTime DESC",
         [mobileNumber, adharCard]
       );
-
+      // console.log(rows)
       if (rows.length === 0) {
-        return res
-          .status(404)
-          .json({
-            message:
-              "No tickets found for the given mobile number and adhar card",
-          });
+        return res.status(404).json({
+          message:
+            "No tickets found for the given mobile number and adhar card",
+        });
       }
 
       res
@@ -215,8 +232,6 @@ app.post("/show_tickets", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
 
 // Verifiy ticket by ticketID and username
 app.post("/verify-ticket", async (req, res) => {
@@ -258,12 +273,10 @@ app.post("/verify-ticket", async (req, res) => {
         });
       } else {
         // Ticket is not found or not associated with the provided username
-        res
-          .status(404)
-          .json({
-            message:
-              "Ticket not found or not associated with the provided username",
-          });
+        res.status(404).json({
+          message:
+            "Ticket not found or not associated with the provided username",
+        });
       }
     } finally {
       connection.release(); // Release the connection back to the pool
@@ -296,11 +309,9 @@ app.post("/tickets-between-times", async (req, res) => {
 
       if (userResults.length === 0) {
         // User not found or verification failed
-        return res
-          .status(401)
-          .json({
-            message: "Mobile number and adhar card verification failed",
-          });
+        return res.status(401).json({
+          message: "Mobile number and adhar card verification failed",
+        });
       }
 
       // Get today's date in 'YYYY-MM-DD' format
@@ -332,7 +343,7 @@ app.post("/tickets-between-times", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-// Contact Us 
+// Contact Us
 app.post("/contact-us", async (req, res) => {
   try {
     const { name, email, message } = req.body;

@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Superadmin Dashboard</title>
+    <link rel="icon" href="images/PMPML_LOGO.jpeg" type="image/x-icon">
+    <link rel="shortcut icon" href="images/PMPML_LOGO.jpeg" type="image/x-icon">
+    <!-- Add additional icon sizes for better compatibility -->
+    <link rel="icon" sizes="192x192" href="images/PMPML_LOGO.jpeg">
     <style>
       body {
         font-family: "Arial", sans-serif;
@@ -43,25 +47,25 @@
       // Check if the username and authToken exist in localStorage
       const username = localStorage.getItem("username");
       const authToken = localStorage.getItem("authkey");
-  
+
       if (!username || !authToken) {
-          // Redirect to index.html if username not found or no valid token
-          window.location.href = "index.html";
+        // Redirect to index.html if username not found or no valid token
+        window.location.href = "index.html";
       }
-  
+
       // Check if the user is an admin
       if (username.toLowerCase() !== "superadmin") {
-          // Redirect to index.html if the user is not an admin
-          window.location.href = "index.html";
+        // Redirect to index.html if the user is not an admin
+        window.location.href = "index.html";
       }
-  
+
       // Function to logout
       function logout() {
-          // Clear localStorage and redirect to index.html
-          localStorage.clear();
-          window.location.href = "index.html";
+        // Clear localStorage and redirect to index.html
+        localStorage.clear();
+        window.location.href = "index.html";
       }
-  </script>
+    </script>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -141,7 +145,7 @@
                     class="drop-button text-white py-2 px-2"
                   >
                     <span class="pr-2"><i class="em em-robot_face"></i></span>
-                    Hi, User
+                    Hi, SuperAdmin
                     <!-- <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg> -->
                   </button>
@@ -253,7 +257,7 @@
                       <h2 class="font-bold uppercase text-gray-600">
                         Total Revenue
                       </h2>
-                      <p class="font-bold text-3xl">
+                      <p class="font-bold text-3xl" id="revenue">
                         $3249
                         <span class="text-green-500"
                           ><i class="fas fa-caret-up"></i
@@ -279,7 +283,7 @@
                       <h2 class="font-bold uppercase text-gray-600">
                         Total Users
                       </h2>
-                      <p class="font-bold text-3xl">
+                      <p class="font-bold text-3xl" id="total_user">
                         249
                         <span class="text-pink-500"
                           ><i class="fas fa-exchange-alt"></i
@@ -305,7 +309,7 @@
                       <h2 class="font-bold uppercase text-gray-600">
                         New Users
                       </h2>
-                      <p class="font-bold text-3xl">
+                      <p class="font-bold text-3xl" id="todays_user">
                         2
                         <span class="text-yellow-600"
                           ><i class="fas fa-caret-up"></i
@@ -329,9 +333,9 @@
                     </div>
                     <div class="flex-1 text-right md:text-center">
                       <h2 class="font-bold uppercase text-gray-600">
-                        Server Uptime
+                        Pune City
                       </h2>
-                      <p class="font-bold text-3xl">152 days</p>
+                      <p class="font-bold text-3xl" id="pune"></p>
                     </div>
                   </div>
                 </div>
@@ -350,9 +354,9 @@
                     </div>
                     <div class="flex-1 text-right md:text-center">
                       <h2 class="font-bold uppercase text-gray-600">
-                        To Do List
+                        Pimpri chinchwad
                       </h2>
-                      <p class="font-bold text-3xl">7 tasks</p>
+                      <p class="font-bold text-3xl" id="pcmc"></p>
                     </div>
                   </div>
                 </div>
@@ -370,8 +374,10 @@
                       </div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
-                      <h2 class="font-bold uppercase text-gray-600">Issues</h2>
-                      <p class="font-bold text-3xl">
+                      <h2 class="font-bold uppercase text-gray-600">
+                        Pass Issued
+                      </h2>
+                      <p class="font-bold text-3xl" id="pi">
                         3
                         <span class="text-red-500"
                           ><i class="fas fa-caret-up"></i
@@ -421,6 +427,105 @@
                       // Function to update the chart with ticket data
                       async function updateChart() {
                         const ticketData = await fetchTicketData();
+                        const countUniqueCustomers = (tickets) => {
+                          const uniqueCustomers = {};
+
+                          tickets.forEach((ticket) => {
+                            const mobileNumber = ticket.mobileNumber;
+                            uniqueCustomers[mobileNumber] = true;
+                          });
+
+                          const overallCount =
+                            Object.keys(uniqueCustomers).length;
+                          return overallCount;
+                        };
+
+                        const countUsersCreatedToday = (tickets) => {
+                          const today = new Date().toLocaleDateString(); // Get today's date in the format "MM/DD/YYYY"
+                          const uniqueCustomers = {};
+
+                          tickets
+                            .filter((ticket) => {
+                              const ticketDate = new Date(
+                                ticket.ticketTime
+                              ).toLocaleDateString();
+                              return ticketDate === today;
+                            })
+                            .forEach((ticket) => {
+                              const mobileNumber = ticket.mobileNumber;
+                              uniqueCustomers[mobileNumber] = true;
+                            });
+
+                          // Count the unique customers created today
+                          const count = Object.keys(uniqueCustomers).length;
+                          return count;
+                        };
+                        const calculateRevenue = (tickets, ticketAmounts) => {
+                          let totalRevenue = 0;
+
+                          tickets.forEach((ticket) => {
+                            const ticketType = ticket.ticketType;
+                            const ticketPrice = ticketAmounts[ticketType];
+
+                            if (ticketPrice !== undefined) {
+                              totalRevenue += ticketPrice;
+                            }
+                          });
+
+                          return totalRevenue;
+                        };
+                        const ticketAmounts = {
+                          puneCorp: 40,
+                          pimpriChinchwad: 40,
+                          combined: 50,
+                          puneDistrict: 120,
+                          seniorCitizen: 40,
+                        };
+                        // Usage
+                        const calculateTicketsForPuneCorp = (tickets) => {
+                          return tickets.reduce((count, ticket) => {
+                            if (ticket.ticketType === "puneCorp") {
+                              return count + 1;
+                            }
+                            return count;
+                          }, 0);
+                        };
+                        const calculateTicketsForPuneDist = (tickets) => {
+                          return tickets.reduce((count, ticket) => {
+                            if (ticket.ticketType === "puneDistrict") {
+                              return count + 1;
+                            }
+                            return count;
+                          }, 0);
+                        };
+                        const calculateTicketsIssuedToday = (tickets) => {
+                          const today = new Date();
+                          today.setHours(0, 0, 0, 0); // Set time to 00:00:00:000
+
+                          return tickets.reduce((count, ticket) => {
+                            const ticketTime = new Date(ticket.ticketTime);
+
+                            if (ticketTime >= today) {
+                              return count + 1;
+                            }
+
+                            return count;
+                          }, 0);
+                        };
+
+                        document.getElementById("total_user").innerText =
+                          countUniqueCustomers(ticketData);
+                        console.log(ticketData);
+                        document.getElementById("todays_user").innerText =
+                          countUsersCreatedToday(ticketData);
+                        document.getElementById("pcmc").innerText =
+                          calculateTicketsForPuneCorp(ticketData);
+                        document.getElementById("pune").innerText =
+                          calculateTicketsForPuneDist(ticketData);
+                        document.getElementById("pi").innerText =
+                        calculateTicketsIssuedToday(ticketData) || 7;
+                        document.getElementById("revenue").innerText =
+                          "₹" + calculateRevenue(ticketData, ticketAmounts);
 
                         if (ticketData) {
                           // Extract date and counts from the last 10 days
@@ -485,10 +590,6 @@
                 </div>
                 <!--/Graph Card-->
               </div>
-
-            
-
-            
 
               <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                 <!--Graph Card-->
@@ -591,86 +692,159 @@
                       </tbody>
                     </table>
               
-                    <button type="button" onclick="addNewAdminRow()" class="bg-green-500 text-white px-4 py-2 mt-4 rounded">Add New Admin</button>
+                    <button
+                      type="button"
+                      onclick="addNewAdminRow()"
+                      class="bg-green-500 text-white px-4 py-2 mt-4 rounded"
+                    >
+                      Add New Admin
+                    </button>
                   </div>
                 </div>
                 <!--/table Card-->
               </div>
+              <script>
+                // Function to fetch and display admins
+                async function fetchAdmins() {
+                  try {
+                    const response = await fetch("http://localhost:3000/users");
+                    const data = await response.json();
               
+                    const adminList = document.getElementById("adminList");
+              
+                    // Clear existing rows
+                    adminList.innerHTML = "";
+              
+                    // Populate the table with admin data
+                    data.users.forEach((admin) => {
+                      const row = adminList.insertRow();
+                      row.insertCell(0).textContent = admin.username;
+                      row.insertCell(1).textContent = admin.password; // Note: You should not expose passwords like this in a real application
+                    });
+                  } catch (error) {
+                    console.error("Error fetching admins:", error);
+                  }
+                }
+              
+                // Function to add a new admin row
+                async function addNewAdminRow() {
+                  const adminList = document.getElementById("adminList");
+              
+                  // Create a new row with default values
+                  const newRow = adminList.insertRow();
+                  newRow.insertCell(0).textContent = "NewAdmin";
+                  newRow.insertCell(1).textContent = "NewPassword";
+              
+                  // Make a fetch request to add the new admin to the database
+                  try {
+                    const response = await fetch("http://localhost:3000/add-admin", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        username: "NewAdmin", // You can replace this with the desired username
+                        password: "NewPassword", // You can replace this with the desired password
+                      }),
+                    });
+              
+                    const result = await response.json();
+              
+                    if (response.ok) {
+                      console.log(result.message);
+                    } else {
+                      console.error(result.error);
+                    }
+                  } catch (error) {
+                    console.error("Error adding new admin:", error);
+                  }
+                }
+              
+                // Fetch admins when the page loads
+                fetchAdmins();
+              </script>
+                           
               <script>
                 // Function to add a new row for a new admin
                 function addNewAdminRow() {
-                  const adminListContainer = document.getElementById('adminList');
-              
+                  const adminListContainer =
+                    document.getElementById("adminList");
+
                   // Create a new row
-                  const newRow = document.createElement('tr');
-              
+                  const newRow = document.createElement("tr");
+
                   // Create cells for the new row
-                  const usernameCell = document.createElement('td');
-                  const passwordCell = document.createElement('td');
-                  const addButtonCell = document.createElement('td');
-              
+                  const usernameCell = document.createElement("td");
+                  const passwordCell = document.createElement("td");
+                  const addButtonCell = document.createElement("td");
+
                   // Create input fields for username and password
-                  const usernameInput = document.createElement('input');
-                  usernameInput.type = 'text';
-                  usernameInput.placeholder = 'Enter username';
-                  usernameInput.className = 'w-full px-3 py-2 border rounded';
-              
-                  const passwordInput = document.createElement('input');
-                  passwordInput.type = 'password';
-                  passwordInput.placeholder = 'Enter password';
-                  passwordInput.className = 'w-full px-3 py-2 border rounded';
-              
+                  const usernameInput = document.createElement("input");
+                  usernameInput.type = "text";
+                  usernameInput.placeholder = "Enter username";
+                  usernameInput.className = "w-full px-3 py-2 border rounded";
+
+                  const passwordInput = document.createElement("input");
+                  passwordInput.type = "password";
+                  passwordInput.placeholder = "Enter password";
+                  passwordInput.className = "w-full px-3 py-2 border rounded";
+
                   // Create a button to add the new admin
-                  const addButton = document.createElement('button');
-                  addButton.type = 'button';
-                  addButton.textContent = 'Add Admin';
-                  addButton.className = 'bg-blue-500 text-white px-4 py-2 mt-2 rounded';
-                  addButton.addEventListener('click', () => addAdmin(usernameInput.value, passwordInput.value));
-              
+                  const addButton = document.createElement("button");
+                  addButton.type = "button";
+                  addButton.textContent = "Add Admin";
+                  addButton.className =
+                    "bg-blue-500 text-white px-4 py-2 mt-2 rounded";
+                  addButton.addEventListener("click", () =>
+                    addAdmin(usernameInput.value, passwordInput.value)
+                  );
+
                   // Append input fields and button to cells
                   usernameCell.appendChild(usernameInput);
                   passwordCell.appendChild(passwordInput);
                   addButtonCell.appendChild(addButton);
-              
+
                   // Append cells to the new row
                   newRow.appendChild(usernameCell);
                   newRow.appendChild(passwordCell);
                   newRow.appendChild(addButtonCell);
-              
+
                   // Append the new row to the admin list
                   adminListContainer.appendChild(newRow);
                 }
-              
+
                 // Function to add a new admin
                 async function addAdmin(username, password) {
                   try {
-                    const response = await fetch('http://localhost:3000/add-admin', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({ username, password }),
-                    });
-              
+                    const response = await fetch(
+                      "http://localhost:3000/add-admin",
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ username, password }),
+                      }
+                    );
+
                     if (response.ok) {
                       // Refresh the admin list after adding a new admin
                       fetchAndDisplayAdmins();
                     } else {
                       // Handle error
-                      console.error('Error adding admin:', await response.json());
+                      console.error(
+                        "Error adding admin:",
+                        await response.json()
+                      );
                     }
                   } catch (error) {
-                    console.error('Error adding admin:', error);
+                    console.error("Error adding admin:", error);
                   }
                 }
-              
+
                 // Fetch and display admins on page load
                 fetchAndDisplayAdmins();
               </script>
-              
-
-
             </div>
           </div>
         </section>
@@ -713,7 +887,5 @@
         }
       };
     </script>
-
-    
   </body>
 </html>
