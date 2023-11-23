@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .ticket-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-san">
+<div id="print" class="flex flex-col space-y-2" >
+    <div class="ticket-info bg-white md:p-8 rounded-md shadow-md mx-auto mt-10 md:max-w-md">
+        <!-- <div class="flex justify-start items-center w-full border "> back</div> -->
+        <h2 class="text-green-500 text-2xl font-bold mb-4">Payment Successful!</h2>
+        <p class="mb-4">Your ticket details:</p>
+        <p><strong>Ticket ID:</strong> <span id="ticketId" class="font-bold"></span></p>
+        <p class="flex w-full justify-center"> <img id="qr" class="max-w-full h-auto mb-4"></p>
+        <p><strong>Ticket Type:</strong> <span id="ticketType" class="max-w-full h-auto mb-4"></p>
+        <p><strong>Ticket Time:</strong> <span id="ticketTime" class="font-bold"></span></p>
+        <button id="printButton" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Download Your Ticket</button>
+        
+ 
+    </div>
+    <a href="index.html" class=""><span class="text-blue-900 my-10">Back To Homepage</span></a>
+</div>
+    
+
+    <script>
+        // Extract ticket data from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const ticketId = urlParams.get('ticketId');
+        const ticketType = urlParams.get('ticketType');
+        const ticketTime = urlParams.get('ticketTime');
+
+        // Display ticket information on the page
+        document.getElementById('ticketType').textContent = ticketType;
+        document.getElementById('qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketId}`;
+        document.getElementById('ticketTime').textContent = ticketTime;
+    </script>
+ <script>
+    function printDiv(divId) {
+        var printContents = document.getElementById(divId).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
+    // Print button click event
+    document.getElementById('printButton').addEventListener('click', () => {
+    
+        printDiv('print');
+    });
+</script>
+</body>
+</html>

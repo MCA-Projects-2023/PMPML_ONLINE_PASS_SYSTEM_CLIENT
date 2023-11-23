@@ -39,6 +39,29 @@
         cursor: pointer;
       }
     </style>
+    <script>
+      // Check if the username and authToken exist in localStorage
+      const username = localStorage.getItem("username");
+      const authToken = localStorage.getItem("authkey");
+  
+      if (!username || !authToken) {
+          // Redirect to index.html if username not found or no valid token
+          window.location.href = "index.html";
+      }
+  
+      // Check if the user is an admin
+      if (username.toLowerCase() !== "superadmin") {
+          // Redirect to index.html if the user is not an admin
+          window.location.href = "index.html";
+      }
+  
+      // Function to logout
+      function logout() {
+          // Clear localStorage and redirect to index.html
+          localStorage.clear();
+          window.location.href = "index.html";
+      }
+  </script>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -691,22 +714,6 @@
       };
     </script>
 
-    <script>
-      // Check if the username exists in localStorage
-      const username = localStorage.getItem("username");
-      const authToken = localStorage.getItem("authkey");
-
-      if (!username || !authToken) {
-        // Redirect to index.html if username not found or no valid token
-        window.location.href = "index.html";
-      }
-
-      // Function to logout
-      function logout() {
-        // Clear localStorage and redirect to index.html
-        localStorage.clear();
-        window.location.href = "index.html";
-      }
-    </script>
+    
   </body>
 </html>

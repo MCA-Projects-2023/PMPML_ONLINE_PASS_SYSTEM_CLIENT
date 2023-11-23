@@ -1,73 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Scanner with Display</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        // Check if the username and authToken exist in localStorage
+        const username = localStorage.getItem("username");
+        const authToken = localStorage.getItem("authkey");
+    
+        if (!username || !authToken) {
+            // Redirect to index.html if username not found or no valid token
+            window.location.href = "index.html";
+        }
+    
+        // Check if the user is an admin
+        if (username.toLowerCase() !== "admin") {
+            // Redirect to index.html if the user is not an admin
+            window.location.href = "index.html";
+        }
+    
+        // Function to logout
+        function logout() {
+            // Clear localStorage and redirect to index.html
+            localStorage.clear();
+            window.location.href = "index.html";
+        }
+    </script>
+       <style>
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
         }
 
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        p {
-            margin-bottom: 20px;
-        }
-
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
+            }
         }
     </style>
-</head>
-<body>
+  </head>
+  <body class="bg-gray-100">
+    <nav class="desktop-nav bg-white p-4 shadow-md">
+        <div class="container mx-auto flex items-center justify-between">
+          <!-- Logo -->
+          <div class="text-xl font-bold">
+            <img src="/images/PMPML_LOGO.jpeg" class="h-12 w-16">
+          </div>
+  
+          <!-- Navigation Options -->
+          
+  
+          <!-- Login Button -->
+         <button class="text-white bg-blue-500 px-4 py-2 rounded" onclick="logout()"">Logout</button>
+        </div>
+      </nav>
+  
+      <!-- Navbar for Mobile -->
+      <nav class="mobile-nav bg-white p-2 shadow-md">
+        <div class="container mx-auto flex  justify-between">
+          <!-- Navigation Options for Mobile -->
+          <div class="space-x-2 flex items-center">
+            <img src="images/PMPML_LOGO.jpeg" class="h-8 w-8">
+          </div>
+  
+          <!-- Login Button for Mobile -->
+          
+           <div>
+            <button class="text-white bg-blue-500 px-4 py-2 rounded" onclick="logout()">Logout</button>
+          
+           </div>
+        </div>
+      </nav>
+  
+    <div class="flex w-full p-8 md:flex-row flex-col space-y-2 md:space-x-4">
+      <!-- Left Section: QR Code Scanner -->
+      <div class="md:w-1/2 flex ">
+       
+        <div id="scanner-container" class="relative w-full  flex justify-end md:p-1 rounded-2xl bg-white">
+          <!-- Scanner will be rendered here -->
+        </div>
+      </div>
 
-<script>
-    // Check if the username exists in localStorage
-    const username = localStorage.getItem("username");
-    const authToken = localStorage.getItem("authkey");
+      <!-- Right Section: Display Scanned Data -->
+      <div class="md:w-1/2 flex justify-center h-4/6  ">
+        <div class="bg-white p-8 rounded shadow-md rounded-2xl">
+          <div class="flex justify-center items-center ">
+            <h2 class="text-2xl">Ticket Information</h2>
+            
+          </div>
 
-    if (!username || !authToken) {
-        // Redirect to index.html if username not found or no valid token
-        window.location.href = "index.html";
-    }
+          <div class="flex md:flex-row flex-col" id="ticket_info">
+            <div class="flex-shrink-0 blur-sm animate-pulse">
+                <div id="qrcode" class="w-full flex justify-center">
+                  <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${data.ticket.ticketId}"
+                  />
+                </div>
+              </div>
+  
+              <!-- Right Side (Ticket Details) -->
+              <div class="ml-4 blur-sm animate-pulse">
+                <p><strong>Aadhar Card Number:</strong> ${sliceTextWithDash(data.ticket.adharCard,4)}</p>
+                <p><strong>Ticket ID:</strong> ${data.ticket.ticketId}</p>
+                <p><strong>Mobile Number:</strong> ${data.ticket.mobileNumber}</p>
+                <p><strong>Ticket Time:</strong> ${data.ticket.ticketTime}</p>
+                <p><strong>Ticket Type:</strong> ${data.ticket.ticketType}</p>
+                <p><strong>Ticket Price:</strong> ${ticketAmounts[data.ticket.ticketType]}</p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    // Function to logout
-    function logout() {
-        // Clear localStorage and redirect to index.html
-        localStorage.clear();
-        window.location.href = "index.html";
-    }
-</script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script>
+         function logout() {
+          // Clear localStorage and redirect to index.html
+          localStorage.clear();
+          window.location.href = "index.html";
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get access to the camera
+        navigator.mediaDevices
+          .getUserMedia({ video: { facingMode: "environment" } })
+          .then(function (stream) {
+            // Create a video element to stream the camera
+            const video = document.createElement("video");
+            video.classList.add("rounded-2xl", "md:h-full", "md:w-full",);
+            document.getElementById("scanner-container").appendChild(video);
 
-<div class="container">
-    <h1>Welcome to Admin Dashboard</h1>
-    <p>This is a secure area for admin users.</p>
+            // Initialize Instascan with the video element
+            const scanner = new Instascan.Scanner({ video: video });
+            scanner.addListener("scan", function (content) {
+                if ('vibrate' in navigator) {
+            // Vibrate for 1000 milliseconds (1 second)
+            navigator.vibrate(1000);
+        } else {
+            console.error('Vibration API not supported in this browser.');
+        }
+                const audio = new Audio('music/scanner/scanner.mp3');
+        audio.play();
+              ticket_print(content);
+            });
 
-    <!-- Add your admin dashboard content here -->
+            // Start the camera feed
+            Instascan.Camera.getCameras().then(function (cameras) {
+              if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+              } else {
+                console.error("No cameras found.");
+              }
+            });
+          })
+          .catch(function (error) {
+            console.error("Error accessing camera:", error);
+          });
+      });
+      function ticket_print(content) {
+        // Retrieve username from localStorage
+        const username = localStorage.getItem("username");
 
-    <button onclick="logout()">Logout</button>
-</div>
+        // Check if username is present
+        if (!username) {
+          console.error("Username not found in localStorage");
+          return;
+        }
 
-</body>
+        // API endpoint
+        const apiUrl = "http://localhost:3000/verify-ticket";
+
+        // Request body
+        const requestBody = {
+          username: username,
+          ticketId: content,
+        };
+
+        // Fetch options
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        };
+        // console.log(apiUrl, requestOptions);
+        // Make the API request
+        function sliceTextWithDash(text, chunkSize) {
+            console.log(text)
+          const result = [];
+          for (let i = 0; i < text.length; i += chunkSize) {
+            result.push(text.substring(i, i + chunkSize));
+          }
+          return result.join("-");
+        }
+        const ticketAmounts = {
+          puneCorp: 40,
+          pimpriChinchwad: 40,
+          combined: 50,
+          puneDistrict: 120,
+          seniorCitizen: 40,
+        };
+        fetch(apiUrl, requestOptions)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Statusasdfa: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Log the received JSON in the console
+            document.getElementById(
+              "ticket_info"
+            ).innerHTML = `<div class="flex-shrink-0 ">
+              <div id="qrcode" class="w-full flex justify-center">
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${data.ticket.ticketId}"
+                />
+              </div>
+            </div>
+
+            <!-- Right Side (Ticket Details) -->
+            <div class="ml-4">
+              <p><strong>Aadhar Card Number:</strong> ${sliceTextWithDash(data.ticket.adharCard,4)}</p>
+              <p><strong>Ticket ID:</strong> ${data.ticket.ticketId}</p>
+              <p><strong>Mobile Number:</strong> ${data.ticket.mobileNumber}</p>
+              <p><strong>Ticket Time:</strong> ${data.ticket.ticketTime}</p>
+              <p><strong>Ticket Type:</strong> ${data.ticket.ticketType}</p>
+              <p><strong>Ticket Price:</strong> ${ticketAmounts[data.ticket.ticketType]}</p>
+            </div>`;
+            console.log("API Response:", data);
+          })
+          .catch((error) => {
+            alert("Please Scan Appropiate Qr Code")
+          });
+      }
+    </script>
+  </body>
 </html>
+
+<!-- <button onclick="logout()">Logout</button> -->

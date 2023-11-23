@@ -8,8 +8,65 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <style>
+      @media (max-width: 768px) {
+          .desktop-nav {
+              display: none;
+          }
+      }
+
+      @media (min-width: 769px) {
+          .mobile-nav {
+              display: none;
+          }
+      }
+  </style>
   </head>
   <body class="bg-gray-100">
+       <!-- Navbar for Desktop -->
+       <nav class="desktop-nav bg-white p-4 shadow-md">
+        <div class="container mx-auto flex items-center justify-between">
+          <!-- Logo -->
+          <div class="text-xl font-bold">
+            <img src="/images/PMPML_LOGO.jpeg" class="h-12 w-16">
+          </div>
+  
+          <!-- Navigation Options -->
+          <div class="space-x-4">
+            <a href="index.html" class="text-gray-700 hover:text-blue-500"
+              >Home</a
+            >
+            <a href="pass.html" class="text-gray-700 hover:text-blue-500">Pass</a>
+            <a href="tickets.html" class="text-gray-700 hover:text-blue-500">Tickets</a>
+            <a href="businfo.html" class="text-gray-700 hover:text-blue-500">Bus Info</a>
+          </div>
+  
+          <!-- Login Button -->
+         <a href="login.html"> <button class="text-white bg-blue-500 px-4 py-2 rounded">Admin Login</button></a>
+        </div>
+      </nav>
+  
+      <!-- Navbar for Mobile -->
+      <nav class="mobile-nav bg-white p-2 shadow-md ">
+        <div class="container mx-auto flex  justify-between">
+          <!-- Navigation Options for Mobile -->
+          <div class="space-x-2 flex items-center">
+            <img src="/images/PMPML_LOGO.jpeg" class="h-8 w-8">
+            <a href="index.html" class="text-gray-700 hover:text-blue-500">Home</a>
+            <a href="pass.html" class="text-gray-700 hover:text-blue-500">Pass</a>
+            <a href="tickets.html" class="text-gray-700 hover:text-blue-500">Tickets</a>
+            <a href="businfo" class="text-gray-700 hover:text-blue-500">Bus Info</a>
+          </div>
+  
+          <!-- Login Button for Mobile -->
+          
+           <div>
+            <a href="login.html"><button class="text-white bg-blue-500 px-4 py-2 rounded">login</button></a>
+          
+           </div>
+        </div>
+      </nav>
+  
     <div class="container mx-auto p-4">
       <!-- Search Form -->
       <form id="searchForm" class="mb-4">
@@ -52,7 +109,10 @@
 
       <!-- Tickets Table -->
       <div class="md:flex">
-        <div class="md:w-1/6" id="pass"></div>
+        <div class="md:w-1/6" id="pass">
+
+         <img src="/images/bus/buspng.png">
+        </div>
         <div class="overflow-x-auto md:w-5/6">
           <table
             id="ticketsTable"
