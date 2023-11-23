@@ -69,11 +69,11 @@
   <body class="w-full">
     <!-- Navigation Bar -->
     <!-- Navbar for Desktop -->
-    <nav class="desktop-nav bg-white p-4 shadow-md ">
+    <nav class="desktop-nav bg-white p-4 shadow-md">
       <div class="container mx-auto flex items-center justify-between">
         <!-- Logo -->
         <div class="text-xl font-bold">
-          <img src="/images/PMPML_LOGO.jpeg" class="h-12 w-16">
+          <img src="/images/PMPML_LOGO.jpeg" class="h-12 w-16" />
         </div>
 
         <!-- Navigation Options -->
@@ -82,33 +82,50 @@
             >Home</a
           >
           <a href="pass.html" class="text-gray-700 hover:text-blue-500">Pass</a>
-          <a href="tickets.html" class="text-gray-700 hover:text-blue-500">Tickets</a>
-          <a href="businfo.html" class="text-gray-700 hover:text-blue-500">Bus Info</a>
+          <a href="tickets.html" class="text-gray-700 hover:text-blue-500"
+            >Tickets</a
+          >
+          <a href="businfo.html" class="text-gray-700 hover:text-blue-500"
+            >Bus Info</a
+          >
         </div>
 
         <!-- Login Button -->
-       <a href="login.html"> <button class="text-white bg-blue-500 px-4 py-2 rounded">Admin Login</button></a>
+        <a href="login.html">
+          <button class="text-white bg-blue-500 px-4 py-2 rounded">
+            Admin Login
+          </button></a
+        >
       </div>
     </nav>
 
     <!-- Navbar for Mobile -->
     <nav class="mobile-nav bg-white p-2 shadow-md">
-      <div class="container mx-auto flex  justify-between">
+      <div class="container mx-auto flex justify-between">
         <!-- Navigation Options for Mobile -->
         <div class="space-x-2 flex items-center">
-          <img src="/images/PMPML_LOGO.jpeg" class="h-8 w-8">
-          <a href="index.html" class="text-gray-700 hover:text-blue-500">Home</a>
+          <img src="/images/PMPML_LOGO.jpeg" class="h-8 w-8" />
+          <a href="index.html" class="text-gray-700 hover:text-blue-500"
+            >Home</a
+          >
           <a href="pass.html" class="text-gray-700 hover:text-blue-500">Pass</a>
-          <a href="tickets.html" class="text-gray-700 hover:text-blue-500">Tickets</a>
-          <a href="businfo" class="text-gray-700 hover:text-blue-500">Bus Info</a>
+          <a href="tickets.html" class="text-gray-700 hover:text-blue-500"
+            >Tickets</a
+          >
+          <a href="businfo" class="text-gray-700 hover:text-blue-500"
+            >Bus Info</a
+          >
         </div>
 
         <!-- Login Button for Mobile -->
-        
-         <div>
-          <a href="login.html"><button class="text-white bg-blue-500 px-4 py-2 rounded">login</button></a>
-        
-         </div>
+
+        <div>
+          <a href="login.html"
+            ><button class="text-white bg-blue-500 px-4 py-2 rounded">
+              login
+            </button></a
+          >
+        </div>
       </div>
     </nav>
 
@@ -327,15 +344,15 @@
                     onchange="on_input_value_change()"
                     id="bus_number_input"
                   />
+
                   <button
-                    onclick="onshowdetails_handler()"
                     class="bg-blue-500 text-white p-1 rounded-b-lg"
                     data-modal-target="default-modal"
                     data-modal-toggle="default-modal"
                     type="button"
                     id="Bus_input_button"
                   >
-                    SHOW DETAILS
+                    <a href="businfo.html"> SHOW DETAILS </a>
                   </button>
                 </form>
 
@@ -806,6 +823,46 @@
     </script>
 
     <script>
+      // contact us
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          // Get form data
+          const formData = new FormData(form);
+          const requestBody = {};
+          formData.forEach((value, key) => {
+            requestBody[key] = value;
+          });
+
+          // Make API call
+          try {
+            const response = await fetch("/contact-us", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(requestBody),
+            });
+
+            if (response.ok) {
+              const result = await response.json();
+              console.log(result.message); // Display success message
+            } else {
+              const errorData = await response.json();
+              console.error(
+                "Error submitting contact details:",
+                errorData.message
+              );
+            }
+          } catch (error) {
+            console.error("Error submitting contact details:", error);
+          }
+        });
+      });
+
       // Specify the URL of the JSON file
 
       function convertTo12HourFormat(time24) {

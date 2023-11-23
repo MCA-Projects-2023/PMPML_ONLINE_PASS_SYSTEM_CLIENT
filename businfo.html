@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Load JSON File in Browser</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-nav {
+        display: none;
+      }
+    }
+  </style>
+  <body>
+    <nav class="desktop-nav bg-white p-4 shadow-md">
+      <div class="container mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <div class="text-xl font-bold">
+          <img src="images/PMPML_LOGO.jpeg" class="h-12 w-16" />
+        </div>
+
+        <!-- Navigation Options -->
+        <div class="space-x-4">
+          <a href="index.html" class="text-gray-700 hover:text-blue-500"
+            >Home</a
+          >
+          <a href="pass.html" class="text-gray-700 hover:text-blue-500">Pass</a>
+          <a href="tickets.html" class="text-gray-700 hover:text-blue-500"
+            >Tickets</a
+          >
+          <a href="businfo.html" class="text-gray-700 hover:text-blue-500"
+            >Bus Info</a
+          >
+        </div>
+
+        <!-- Login Button -->
+        <a href="login.html">
+          <button class="text-white bg-blue-500 px-4 py-2 rounded">
+            Admin Login
+          </button></a
+        >
+      </div>
+    </nav>
+
+    <!-- Navbar for Mobile -->
+    <nav class="mobile-nav bg-white p-2 shadow-md">
+      <div class="container mx-auto flex justify-between">
+        <!-- Navigation Options for Mobile -->
+        <div class="space-x-2 flex items-center">
+          <img src="/images/PMPML_LOGO.jpeg" class="h-8 w-8" />
+          <a href="index.html" class="text-gray-700 hover:text-blue-500"
+            >Home</a
+          >
+          <a href="pass.html" class="text-gray-700 hover:text-blue-500">Pass</a>
+          <a href="tickets.html" class="text-gray-700 hover:text-blue-500"
+            >Tickets</a
+          >
+          <a href="businfo" class="text-gray-700 hover:text-blue-500"
+            >Bus Info</a
+          >
+        </div>
+
+        <!-- Login Button for Mobile -->
+
+        <div>
+          <a href="login.html"
+            ><button class="text-white bg-blue-500 px-4 py-2 rounded">
+              login
+            </button></a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div
+      class="text-sm flex justify-between items-center text-left text-white h-14 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 m-2 rounded-2xl relative"
+    >
+      <!-- Search Input -->
+      <div class="w-3/6 flex justify-start px-4">
+        <img src="images/PMPML_LOGO.jpeg" class="h-12 w-12 rounded-2xl" />
+      </div>
+
+      <!-- Search Button -->
+      <div class="w-3/6 flex px-4 justify-end">
+        <div class="flex space-x-2">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search by Bus Number"
+            class="pl-8 bg-white pr-4 py-2 w-64 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200"
+          />
+          <button
+            id="searchButton"
+            class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="relative overflow-x-auto m-2 rounded-2xl">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Bus Number</th>
+            <th scope="col" class="px-6 py-3">Route Name</th>
+            <th scope="col" class="px-6 py-3">Arrival Time</th>
+            <th scope="col" class="px-6 py-3">Destination Time</th>
+            <th scope="col" class="px-6 py-3">View Routes</th>
+          </tr>
+        </thead>
+        <tbody id="table_data"></tbody>
+      </table>
+    </div>
+    <div
+      id="modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50"
+    >
+      <div class="bg-white p-8 rounded shadow-md">
+        <h2 class="text-2xl mb-4">Stop Information</h2>
+        <div id="stop-info"></div>
+        <button
+          onclick="closeModal()"
+          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+    <script>
+      // Specify the URL of the JSON file
+
+      function convertTo12HourFormat(time24) {
+        let timeParts = time24.split(":");
+        let hours = parseInt(timeParts[0], 10);
+        let minutes = timeParts[1];
+        let amPm = "AM";
+
+        if (hours >= 12) {
+          amPm = "PM";
+          if (hours > 12) {
+            hours -= 12;
+          }
+        }
+
+        if (hours === 0) {
+          hours = 12;
+        }
+
+        const time12 = `${hours}:${minutes} ${amPm}`;
+        return time12;
+      }
+      // Fetch the JSON file using the Fetch API
+      function sortByArrivalTime(trips) {
+        // Use the Array.sort() method to sort the "trips" array
+        trips.sort((a, b) => {
+          const timeA = a.arrival_time;
+          const timeB = b.arrival_time;
+
+          // Convert time strings to Date objects for comparison
+          const dateA = new Date(`2000-01-01T${timeA}`);
+          const dateB = new Date(`2000-01-01T${timeB}`);
+
+          // Compare the Date objects
+          return dateA - dateB;
+        });
+
+        return trips;
+      }
+
+      document
+        .getElementById("searchButton")
+        .addEventListener("click", function () {
+          const searchInputValue = document.getElementById("searchInput").value;
+          document.getElementById("table_data").innerHTML = "";
+          const jsonUrl = `/routes/${searchInputValue}.json`;
+          fetch(jsonUrl)
+            .then((response) => response.json())
+            .then((jsonData) => {
+              console.log(jsonData);
+              if (Array.isArray(jsonData.trips)) {
+                jsonData.trips = sortByArrivalTime(jsonData.trips);
+
+                jsonData.trips.forEach((item) => {
+                  const table = document.getElementById("table_data");
+
+                  const newRow = document.createElement("tr");
+                  newRow.className =
+                    "bg-white border-b dark:bg-gray-800 dark:border-gray-700";
+
+                  const td1 = document.createElement("td");
+                  td1.setAttribute("scope", "row");
+                  td1.className =
+                    "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white";
+                  const route_idMatch = item.trip_id.match(/NORMAL_(\d+)/);
+                  const route_id = route_idMatch ? route_idMatch[1] : "";
+                  td1.textContent = route_id;
+
+                  const td2 = document.createElement("td");
+                  td2.className = "px-6 py-4";
+                  td2.textContent = item.trip_id;
+
+                  const td3 = document.createElement("td");
+                  td3.className = "px-6 py-4";
+                  td3.textContent = convertTo12HourFormat(
+                    item.trips[0].arrival_time
+                  );
+
+                  const td4 = document.createElement("td");
+                  td4.className = "px-6 py-4";
+                  td4.textContent = convertTo12HourFormat(
+                    item.trips[item.trips.length - 1].departure_time
+                  );
+
+                  const td5 = document.createElement("td");
+                  td5.className = "px-6 py-4";
+
+                  const viewButton = document.createElement("button");
+                  viewButton.textContent = "View Routes";
+                  viewButton.className = "text-white underline cursor-pointer";
+
+                  // Add onclick function to the button
+                  viewButton.addEventListener("click", function () {
+                    // Call the function with bus number and trip ID
+                    handleClickFunction(route_id, item.trip_id);
+                  });
+                  td5.appendChild(viewButton);
+                  
+                  newRow.appendChild(td1);
+                  newRow.appendChild(td2);
+                  newRow.appendChild(td3);
+                  newRow.appendChild(td4);
+                  newRow.appendChild(td5);
+
+                  table.appendChild(newRow);
+                });
+              } else {
+                console.error("JSON data structure is not as expected.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error fetching JSON file:", error);
+            });
+        });
+
+        function handleClickFunction(busNumber, tripID) {
+                    window.location.href = `stops.html?busNumber=${busNumber}&tripID=${tripID}`;
+                  }
+    </script>
+  </body>
+</html>
