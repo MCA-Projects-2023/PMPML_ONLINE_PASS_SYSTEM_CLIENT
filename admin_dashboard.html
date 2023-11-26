@@ -60,7 +60,19 @@
           </div>
   
           <!-- Navigation Options -->
-          
+          <div class="space-x-4">
+            <a href="adminnotifcation.html" class="text-gray-700 hover:text-blue-500"
+              >Notification</a
+            >
+            <a href="contactedpeople.html" class="text-gray-700 hover:text-blue-500">Contacted People</a>
+            <a href="feedbackresponse.html" class="text-gray-700 hover:text-blue-500"
+              >Feedback</a
+            >
+            <a href="admin_dashboard.html" class="text-gray-700 hover:text-blue-500"
+              >ADMIN HOME</a
+            >
+          </div>
+  
   
           <!-- Login Button -->
          <button class="text-white bg-blue-500 px-4 py-2 rounded" onclick="logout()"">Logout</button>
@@ -74,7 +86,20 @@
           <div class="space-x-2 flex items-center">
             <img src="images/PMPML_LOGO.jpeg" class="h-8 w-8">
           </div>
-  
+   <!-- Navigation Options for Mobile -->
+   <div class="space-x-2 flex items-center">
+    <img src="/images/PMPML_LOGO.jpeg" class="h-8 w-8" />
+    <a href="adminnotifcation.html" class="text-gray-700 hover:text-blue-500"
+      >Notifcation</a
+    >
+    <a href="contactedpeople.html" class="text-gray-700 hover:text-blue-500">Contacted People</a>
+    <a href="feedbackresponse.html" class="text-gray-700 hover:text-blue-500"
+      >Feedback </a
+    >
+    <a href="admin_dashboard.html" class="text-gray-700 hover:text-blue-500"
+    >ADMIN HOME</a
+  >
+  </div>
           <!-- Login Button for Mobile -->
           
            <div>
@@ -118,6 +143,9 @@
                 <p><strong>Ticket Time:</strong> ${data.ticket.ticketTime}</p>
                 <p><strong>Ticket Type:</strong> ${data.ticket.ticketType}</p>
                 <p><strong>Ticket Price:</strong> ${ticketAmounts[data.ticket.ticketType]}</p>
+                <!-- <p> 
+                  <button id="sendtomail" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">SEND TO MAIL</button>
+                  </p> -->
               </div>
           </div>
         </div>
@@ -228,6 +256,7 @@
                 <img
                   src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${data.ticket.ticketId}"
                 />
+                
               </div>
             </div>
 
@@ -239,6 +268,10 @@
               <p><strong>Ticket Time:</strong> ${data.ticket.ticketTime}</p>
               <p><strong>Ticket Type:</strong> ${data.ticket.ticketType}</p>
               <p><strong>Ticket Price:</strong> ${ticketAmounts[data.ticket.ticketType]}</p>
+              <p><a href="http://127.0.0.1:5501/success.html?ticketId=${data.ticket.ticketId}&ticketType=${data.ticket.ticketType}Time=${data.ticket.ticketTime}" ><button  id="printButton" class="bg-blue-500 text-white px-4 py-2 rounded mt-4"> 
+    Print
+</button></a></p>
+             
             </div>`;
             console.log("API Response:", data);
           })

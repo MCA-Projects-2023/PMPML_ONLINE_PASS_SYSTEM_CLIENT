@@ -42,8 +42,16 @@
         <p class="flex w-full justify-center"> <img id="qr" class="max-w-full h-auto mb-4"></p>
         <p><strong>Ticket Type:</strong> <span id="ticketType" class="max-w-full h-auto mb-4"></p>
         <p><strong>Ticket Time:</strong> <span id="ticketTime" class="font-bold"></span></p>
-        <button id="printButton" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Download Your Ticket</button>
+        <button  id="downloadButton" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+            <i class="fas fa-download"></i> Download Your Ticket
+        </button>
         
+        <!-- Button for Send to Mail -->
+        <button onclick="sendEmail()" id="mailButton" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+            <i class="fas fa-envelope"></i> Send to Mail
+        </button>
+        
+          
  
     </div>
     <a href="index.html" class=""><span class="text-blue-900 my-10">Back To Homepage</span></a>
@@ -74,10 +82,50 @@
     }
 
     // Print button click event
-    document.getElementById('printButton').addEventListener('click', () => {
+    document.getElementById('downloadButton').addEventListener('click', () => {
     
         printDiv('print');
     });
 </script>
+<!-- Add this script after your existing scripts -->
+<script>
+    async function sendEmail() {
+        // Prompt the user for their email address
+        const userEmail = prompt("Please enter your email address:");
+
+        if (!userEmail) {
+            alert("Email address is required.");
+            return;
+        }
+
+        try {
+            // Make an API request to send the email
+            const response = await fetch('http://localhost:3000/send_ticket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: userEmail,
+                    ticketId: ticketId
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Email sent successfully!");
+            } else {
+                alert(data.error || "Error sending email");
+            }
+        } catch (error) {
+            console.error("Error sending email:", error);
+            alert("An error occurred while sending the email");
+        }
+    }
+
+ 
+</script>
+
 </body>
 </html>

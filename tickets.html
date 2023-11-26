@@ -202,8 +202,9 @@
                     }</td>
                   <td class="py-2 px-4 border-b">${ticket.ticketTime}</td>
                   <td class="py-2 px-4 border-b">
-  <button onclick="viewTicket('${ticket.ticketId}', '${ticket.ticketTime}')">View Ticket</button>
+  <button onclick="viewTicket('${ticket}', '${ticket.ticketTime}')">View Ticket</button>
 </td>
+
                   `;
           tableBody.appendChild(row);
         });
@@ -221,7 +222,8 @@
         return ticketAmounts[ticketType] || 0;
       }
 
-      function viewTicket(ticketid, tickettime) {
+      function viewTicket(ticket, tickettime) {
+        console.log(ticket)
   const targetElement = document.getElementById("pass");
 
   // Define the HTML content you want to add
@@ -233,13 +235,18 @@
       <div class="qr-code mb-4 w-full flex justify-center">
         <!-- Include your QR code image here -->
         <img
-          src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketid}"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticket.ticketId}"
           alt="QR Code"
           class="max-w-full h-auto"
         />
       </div>
       <div class="adhar-card mb-2">
         <strong>${tickettime}</strong>
+      </div>
+      <div class="adhar-card mb-2">
+        <a href="http://127.0.0.1:5501/success.html?ticketId=${ticket.ticketId}&ticketType=${ticket.ticketType}Time=${ticket.ticketTime}" ><button  id="printButton" class="bg-blue-500 text-white px-4 py-2 rounded mt-4"> 
+    Print
+</button></a>
       </div>
     </div>
   `;

@@ -26,6 +26,184 @@
         }
       }
     </style>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Stops</title>
+        <link rel="icon" href="images/PMPML_LOGO.jpeg" type="image/x-icon">
+        <link rel="shortcut icon" href="images/PMPML_LOGO.jpeg" type="image/x-icon">
+        <!-- Add additional icon sizes for better compatibility -->
+        <link rel="icon" sizes="192x192" href="images/PMPML_LOGO.jpeg">
+        <!-- Add any additional styles or scripts you may need -->
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
+          rel="stylesheet"
+        />
+        <style>
+          @media (max-width: 768px) {
+            .desktop-nav {
+              display: none;
+            }
+          }
+    
+          @media (min-width: 769px) {
+            .mobile-nav {
+              display: none;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        
+    
+        <!-- Navbar for Mobile -->
+        <nav class="mobile-nav bg-white p-2 shadow-md">
+          <div class="container mx-auto flex justify-between">
+            <!-- Navigation Options for Mobile -->
+            <div class="space-x-2 flex items-center">
+              <img src="/images/PMPML_LOGO.jpeg" class="h-8 w-8" />
+              <a href="index.html" class="text-gray-700 hover:text-blue-500"
+                >Home</a
+              >
+              <a href="pass.html" class="text-gray-700 hover:text-blue-500">Pass</a>
+              <a href="tickets.html" class="text-gray-700 hover:text-blue-500"
+                >Tickets</a
+              >
+              <a href="businfo" class="text-gray-700 hover:text-blue-500"
+                >Bus Info</a
+              >
+            </div>
+    
+            <!-- Login Button for Mobile -->
+    
+            <div>
+              <a href="login.html"
+                ><button class="text-white bg-blue-500 px-4 py-2 rounded">
+                  login
+                </button></a
+              >
+            </div>
+          </div>
+        </nav>
+    
+  
+        <script>
+          // Function to get URL parameters
+          function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+              results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return "";
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+          }
+    
+          // Get busNumber and tripID from URL
+          const busNumber = getParameterByName("busNumber");
+          const tripID = getParameterByName("tripID");
+    
+          // Fetch busNumber.json
+          fetch(`/routes/${busNumber}.json`)
+            .then((response) => response.json())
+            .then((data) => {
+              // Find the trip with the given tripID
+              const selectedTrip = data.trips.find(
+                (trip) => trip.trip_id === tripID
+              );
+    
+              if (selectedTrip) {
+                // Access stops data from the selected trip
+                const stopsData = selectedTrip.trips;
+    
+                // Use stopsData for further processing or rendering
+                fetch_stop_data(stopsData);
+              } else {
+                console.error("Trip ID not found in busNumber.json");
+              }
+            })
+            .catch((error) => {
+              console.error("Error fetching busNumber.json:", error);
+            });
+    
+          function fetch_stop_data(stopsData) {
+            // Fetch stops data from /stops/stop.json
+            // console.log(stopsData);
+            fetch("/stops/stop.json")
+              .then((response) => response.json())
+              .then((stopJsonData) => {
+                // Assuming stopsData and stopJsonData have the necessary structure
+    
+                // Combine the data based on stop_id
+                const combinedData = stopsData.map((stop) => {
+                  // Find the corresponding entry in stopJsonData based on stop_id
+                  const matchingStop = stopJsonData.find(
+                    (jsonStop) => jsonStop.stop_id === stop.stop_id
+                  );
+    
+                  // Combine the data from both sources
+                  return {
+                    stop_id: stop.stop_id,
+                    stop_name: matchingStop ? matchingStop.stop_name : "",
+                    arrival_time: stop.arrival_time,
+                    departure_time: stop.departure_time,
+                    location: `https://www.google.com/maps?q=${
+                      matchingStop ? matchingStop.stop_lat : ""
+                    },${matchingStop ? matchingStop.stop_lon : ""}`,
+                  };
+                });
+                show_stops_data(combinedData)
+              })
+              .catch((error) => {
+                console.error("Error fetching stop.json data:", error);
+              });
+          }
+    
+          function show_stops_data(combinedData) {
+        // Assuming you have a tbody with id "tdata"
+        const tbody = document.getElementById("tdata");
+    
+        // Loop through each data object and create a table row
+        combinedData.forEach((data) => {
+            const row = document.createElement("tr");
+            
+            // Loop through each property in the data object and create table cells
+            for (const key in data) {
+        const cell = document.createElement("td");
+    
+        if (key === "location") {
+            // Create an anchor tag with a link to the map
+            const anchor = document.createElement("a");
+            anchor.href = data.location;
+            anchor.target = "_blank";  // Open the link in a new tab/window
+            anchor.textContent = "View Map";
+            // Add the anchor tag to the td element
+            cell.appendChild(anchor);
+        } else {
+            // For other keys, simply set the text content
+            cell.textContent = data[key];
+        }
+    
+        row.appendChild(cell);
+    }
+    
+    
+    
+    
+            // Append the row to the tbody
+            tbody.appendChild(row);
+        });
+    }
+    
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+      </body>
+    </html>
+    
   </head>
   <body>
     <nav class="desktop-nav bg-white p-4 shadow-md">

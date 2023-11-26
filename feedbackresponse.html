@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Submissions</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Submissions</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<script>
+    // Check if the username and authToken exist in localStorage
+    const username = localStorage.getItem("username");
+    const authToken = localStorage.getItem("authkey");
+
+    if (!username || !authToken) {
+        // Redirect to index.html if username not found or no valid token
+        window.location.href = "index.html";
+    }
+
+    // Check if the user is an admin
+    // if (username.toLowerCase() !== "admin") {
+    //     // Redirect to index.html if the user is not an admin
+    //     window.location.href = "index.html";
+    // }
+
+    // Function to logout
+    function logout() {
+        // Clear localStorage and redirect to index.html
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+</script>
+<style>
+    @media (max-width: 768px) {
+        .desktop-nav {
+            display: none;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .mobile-nav {
+            display: none;
+        }
+    }
+</style>
+<body class="bg-gray-100">
+    <nav class="desktop-nav bg-white p-4 shadow-md">
+        <div class="container mx-auto flex items-center justify-between">
+          <!-- Logo -->
+          <div class="text-xl font-bold">
+            <img src="/images/PMPML_LOGO.jpeg" class="h-12 w-16">
+          </div>
+  
+          <!-- Navigation Options -->
+          <div class="space-x-4">
+            <a href="adminnotifcation.html" class="text-gray-700 hover:text-blue-500"
+              >Notification</a
+            >
+            <a href="contactedpeople.html" class="text-gray-700 hover:text-blue-500">Contacted People</a>
+            <a href="feedbackresponse.html" class="text-gray-700 hover:text-blue-500"
+              >Feedback</a
+            >
+            <a href="admin_dashboard.html" class="text-gray-700 hover:text-blue-500"
+              >ADMIN HOME</a
+            >
+          </div>
+  
+  
+          <!-- Login Button -->
+         <button class="text-white bg-blue-500 px-4 py-2 rounded" onclick="logout()"">Logout</button>
+        </div>
+      </nav>
+  
+      <!-- Navbar for Mobile -->
+      <nav class="mobile-nav bg-white p-2 shadow-md">
+        <div class="container mx-auto flex  justify-between">
+          <!-- Navigation Options for Mobile -->
+          <div class="space-x-2 flex items-center">
+            <img src="images/PMPML_LOGO.jpeg" class="h-8 w-8">
+          </div>
+   <!-- Navigation Options for Mobile -->
+   <div class="space-x-2 flex items-center">
+    <img src="/images/PMPML_LOGO.jpeg" class="h-8 w-8" />
+    <a href="adminnotifcation.html" class="text-gray-700 hover:text-blue-500"
+      >Notifcation</a
+    >
+    <a href="contactedpeople.html" class="text-gray-700 hover:text-blue-500">Contacted People</a>
+    <a href="feedbackresponse.html" class="text-gray-700 hover:text-blue-500"
+      >Feedback </a
+    >
+    <a href="admin_dashboard.html" class="text-gray-700 hover:text-blue-500"
+              >ADMIN HOME</a
+            >
+  </div>
+          <!-- Login Button for Mobile -->
+          
+           <div>
+            <button class="text-white bg-blue-500 px-4 py-2 rounded" onclick="logout()">Logout</button>
+          
+           </div>
+        </div>
+      </nav>
+  <div class="container mx-auto p-8">
+    <h1 class="text-3xl font-semibold mb-6">Feedback Submissions</h1>
+
+    <!-- Display Feedback Submissions -->
+    <table class="min-w-full bg-white border border-gray-300 rounded-md">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b text-center">ID</th>
+          <th class="py-2 px-4 border-b text-center">Name</th>
+          <th class="py-2 px-4 border-b text-center">Email</th>
+          <th class="py-2 px-4 border-b text-center">Feedback</th>
+          <th class="py-2 px-4 border-b text-center">Created At</th>
+        </tr>
+      </thead>
+      <tbody id="feedbackSubmissionsTableBody"></tbody>
+    </table>
+
+    <script>
+      // Fetch and display feedback submissions
+      fetch("http://localhost:3000/feedback")
+        .then((response) => response.json())
+        .then((data) => {
+          const feedbackSubmissionsTableBody = document.getElementById("feedbackSubmissionsTableBody");
+          data.forEach((submission) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td class="py-2 px-4 border-b text-center">${submission.id}</td>
+              <td class="py-2 px-4 border-b text-center">${submission.name}</td>
+              <td class="py-2 px-4 border-b text-center">${submission.email}</td>
+              <td class="py-2 px-4 border-b text-center">${submission.feedback}</td>
+              <td class="py-2 px-4 border-b text-center">${new Date(submission.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
+            `;
+            feedbackSubmissionsTableBody.appendChild(row);
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching feedback submissions:", error);
+          alert("Error fetching feedback submissions");
+        });
+    </script>
+  </div>
+
+</body>
+</html>

@@ -8,6 +8,8 @@ const SECRET_KEY = "spv"; // Replace with a strong secret key
 const fs = require("fs/promises");
 const mysql = require("mysql2/promise");
 const { v4: uuidv4 } = require("uuid");
+const nodemailer = require("nodemailer");
+const pdf = require("html-pdf");
 
 // Use CORS middleware
 app.use(cors());
@@ -72,6 +74,139 @@ app.post("/add-admin", async (req, res) => {
     }
   } catch (error) {
     console.error("Error creating admin user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.post("/feedback", async (req, res) => {
+  try {
+    const { name, email, feedback } = req.body;
+
+    // Insert the feedback into the database
+    const [result] = await pool.execute(
+      "INSERT INTO feedback (name, email, feedback) VALUES (?, ?, ?)",
+      [name, email, feedback]
+    );
+
+    // Check if the feedback was successfully inserted
+    if (result.affectedRows === 1) {
+      res.status(201).json({ message: "Feedback submitted successfully" });
+    } else {
+      res.status(500).json({ error: "Failed to submit feedback" });
+    }
+  } catch (error) {
+    console.error("Error submitting feedback:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.get("/complaints", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM complaints");
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching complaints:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.get("/feedback", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM feedback");
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching feedback:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.get('/contact-us', async (req, res) => {
+  try {
+    const [results] = await pool.execute('SELECT * FROM contact_us');
+    res.status(200).json(results);
+  } catch (error) {
+    console.error('Error fetching contact submissions:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+app.post('/transaction-history', async (req, res) => {
+  try {
+    const { ticket_id, amount, description } = req.body;
+
+    const [result] = await pool.execute(
+      'INSERT INTO transaction_history (ticket_id, amount, description) VALUES (?, ?, ?)',
+      [ticket_id, amount, description]
+    );
+
+    if (result.affectedRows === 1) {
+      res.status(201).json({ message: 'Transaction history saved successfully' });
+    } else {
+      res.status(500).json({ error: 'Failed to save transaction history' });
+    }
+  } catch (error) {
+    console.error('Error saving transaction history:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+app.get('/all-transactions', async (req, res) => {
+  try {
+    // Assuming you have a table named transaction_history
+    const [transactions] = await pool.execute(
+      'SELECT * FROM transaction_history'
+    );
+
+    res.json(transactions);
+  } catch (error) {
+    console.error('Error fetching all transactions:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.post("/contact-us", async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    const [result] = await pool.execute(
+      "INSERT INTO contact_us (name, email, message) VALUES (?, ?, ?)",
+      [name, email, message]
+    );
+
+    if (result.affectedRows === 1) {
+      res
+        .status(201)
+        .json({ message: "Contact information saved successfully" });
+    } else {
+      res.status(500).json({ error: "Failed to save contact information" });
+    }
+  } catch (error) {
+    console.error("Error saving contact information:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.post("/notifications", async (req, res) => {
+  try {
+    const { title, message } = req.body;
+
+    const [result] = await pool.execute(
+      "INSERT INTO notifications (title, message) VALUES (?, ?)",
+      [title, message]
+    );
+
+    if (result.affectedRows === 1) {
+      res.status(201).json({ message: "Notification added successfully" });
+    } else {
+      res.status(500).json({ error: "Failed to add notification" });
+    }
+  } catch (error) {
+    console.error("Error adding notification:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.get("/notifications", async (req, res) => {
+  try {
+    const [notifications] = await pool.execute(
+      "SELECT * FROM notifications ORDER BY created_at DESC"
+    );
+
+    res.status(200).json(notifications);
+  } catch (error) {
+    console.error("Error retrieving notifications:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -344,34 +479,120 @@ app.post("/tickets-between-times", async (req, res) => {
   }
 });
 // Contact Us
-app.post("/contact-us", async (req, res) => {
-  try {
-    const { name, email, message } = req.body;
+// app.post("/contact-us", async (req, res) => {
+//   try {
+//     const { name, email, message } = req.body;
 
-    if (!name || !email || !message) {
-      return res
-        .status(400)
-        .json({ message: "Name, email, and message are required" });
-    }
+//     if (!name || !email || !message) {
+//       return res
+//         .status(400)
+//         .json({ message: "Name, email, and message are required" });
+//     }
+
+//     // Use MySQL connection pool to execute queries
+//     const connection = await pool.getConnection();
+//     try {
+//       // Insert the contact details into the database
+//       await connection.execute(
+//         "INSERT INTO contact_us (name, email, message) VALUES (?, ?, ?)",
+//         [name, email, message]
+//       );
+//     } finally {
+//       connection.release(); // Release the connection back to the pool
+//     }
+
+//     res.status(201).json({ message: "Contact details submitted successfully" });
+//   } catch (error) {
+//     console.error("Error submitting contact details:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
+app.post("/send_ticket", async (req, res) => {
+  // console.log(req.body)
+  try {
+    const { email, ticketId } = req.body;
 
     // Use MySQL connection pool to execute queries
     const connection = await pool.getConnection();
     try {
-      // Insert the contact details into the database
-      await connection.execute(
-        "INSERT INTO contact_us (name, email, message) VALUES (?, ?, ?)",
-        [name, email, message]
+      // Retrieve ticket details from the database based on the ticketId
+      const [ticketResults] = await connection.execute(
+        "SELECT * FROM tickets WHERE ticketId = ?",
+        [ticketId]
       );
-    } finally {
-      connection.release(); // Release the connection back to the pool
-    }
 
-    res.status(201).json({ message: "Contact details submitted successfully" });
+      if (ticketResults.length === 0) {
+        return res.status(404).json({ error: "Ticket not found" });
+      }
+
+      const ticketDetails = ticketResults[0];
+
+      // Create a QR code URL with the ticketId
+      const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketId}`;
+
+      // Compose the HTML content for the email
+      const htmlContent = `
+        <p>Dear Customer,</p>
+        <p>Your ticket details:</p>
+        <p><strong>Ticket ID:</strong> ${ticketId}</p>
+        <p><strong>QR Code:</strong><br/><img src="${qrCodeUrl}" alt="QR Code"></p>
+        <a href="http://127.0.0.1:5501/success.html?ticketId=${ticketDetails.ticketId}&ticketType=${ticketDetails.ticketType}&Time=${ticketDetails.ticketTime}">SEE TICKET HERE</a>
+      `;
+
+      // Generate a PDF version of the ticket
+      const pdfBuffer = await generatePdf(htmlContent);
+
+      // Configure nodemailer
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "mohanalkarvaibhav@gmail.com",
+          pass: "sdsxlvqnevxizocr",
+        },
+      });
+
+      // Compose the email options
+      const mailOptions = {
+        from: "mohanalkarvaibhav@gmail.com",
+        to: email,
+        subject: "Your Ticket Details",
+        html: htmlContent,
+        attachments: [
+          {
+            filename: "ticket.pdf",
+            content: pdfBuffer,
+            encoding: "base64",
+          },
+        ],
+      };
+
+      // Send the email
+      await transporter.sendMail(mailOptions);
+
+      res.json({ success: true, message: "Ticket sent successfully" });
+      console.log("sent");
+    } finally {
+      connection.release();
+    }
   } catch (error) {
-    console.error("Error submitting contact details:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error(error.message);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
   }
 });
+
+// Function to generate PDF from HTML content
+async function generatePdf(htmlContent) {
+  return new Promise((resolve, reject) => {
+    pdf.create(htmlContent).toBuffer((err, buffer) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(buffer);
+      }
+    });
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
