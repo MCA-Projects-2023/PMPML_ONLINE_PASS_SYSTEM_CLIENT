@@ -128,7 +128,7 @@ app.get('/contact-us', async (req, res) => {
 app.post('/transaction-history', async (req, res) => {
   try {
     const { ticket_id, amount, description } = req.body;
-
+    // console.log(req.body)
     const [result] = await pool.execute(
       'INSERT INTO transaction_history (ticket_id, amount, description) VALUES (?, ?, ?)',
       [ticket_id, amount, description]
@@ -157,7 +157,6 @@ app.get('/all-transactions', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 app.post("/contact-us", async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -210,7 +209,6 @@ app.get("/notifications", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 // Login API
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -326,7 +324,6 @@ app.post("/add_ticket", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 // view tickets by mobile and adharcard
 app.post("/show_tickets", async (req, res) => {
   try {
@@ -367,7 +364,6 @@ app.post("/show_tickets", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 // Verifiy ticket by ticketID and username
 app.post("/verify-ticket", async (req, res) => {
   try {
@@ -421,7 +417,6 @@ app.post("/verify-ticket", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 // Tickets between time
 app.post("/tickets-between-times", async (req, res) => {
   try {
@@ -507,7 +502,6 @@ app.post("/tickets-between-times", async (req, res) => {
 //     res.status(500).json({ error: "Internal Server Error" });
 //   }
 // });
-
 app.post("/send_ticket", async (req, res) => {
   // console.log(req.body)
   try {
@@ -580,7 +574,6 @@ app.post("/send_ticket", async (req, res) => {
     res.status(500).json({ success: false, error: "Internal Server Error" });
   }
 });
-
 // Function to generate PDF from HTML content
 async function generatePdf(htmlContent) {
   return new Promise((resolve, reject) => {
@@ -593,7 +586,6 @@ async function generatePdf(htmlContent) {
     });
   });
 }
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

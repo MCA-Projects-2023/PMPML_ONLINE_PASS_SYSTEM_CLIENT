@@ -188,7 +188,9 @@
             </div>
           </div>
         </marquee>
-        <a href="notifcaition.html" class="text-white text-sm">Show All Notifications</a>
+        <a href="notifcaition.html" class="text-white text-sm"
+          >Show All Notifications</a
+        >
       </div>
     </div>
 
@@ -363,15 +365,14 @@
                     id="bus_number_input"
                   />
 
-                  <a href="businfo.html"
-                  class="bg-blue-500 text-white p-1 rounded-b-lg flex justify-center items-center"
-                  
-                  type="button"
-                  id="Bus_input_button"
+                  <a
+                    href="businfo.html"
+                    class="bg-blue-500 text-white p-1 rounded-b-lg flex justify-center items-center"
+                    type="button"
+                    id="Bus_input_button"
                   >
-                    <div
-                   > SHOW DETAILS </div>
-                </a>
+                    <div>SHOW DETAILS</div>
+                  </a>
                 </form>
 
                 <!-- Main modal -->
@@ -562,70 +563,106 @@
     <!-- Contact Us -->
     <div class="container mx-auto p-8 px-32">
       <h1 class="text-3xl font-semibold mb-6">Contact Us</h1>
-  
+
       <!-- Contact Form -->
       <form id="contactForm" class="bg-white p-6 rounded-md shadow-md">
         <div class="mb-4">
-          <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
-          <input type="text" id="name" name="name" class="w-full border border-gray-300 p-2 rounded-md" required>
+          <label for="name" class="block text-gray-700 text-sm font-bold mb-2"
+            >Your Name:</label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="w-full border border-gray-300 p-2 rounded-md"
+            required
+          />
         </div>
-  
+
         <div class="mb-4">
-          <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Your Email:</label>
-          <input type="email" id="email" name="email" class="w-full border border-gray-300 p-2 rounded-md" required>
+          <label for="email" class="block text-gray-700 text-sm font-bold mb-2"
+            >Your Email:</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="w-full border border-gray-300 p-2 rounded-md"
+            required
+          />
         </div>
-  
+
         <div class="mb-4">
-          <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Your Message:</label>
-          <textarea id="message" name="message" rows="4" class="w-full border border-gray-300 p-2 rounded-md" required></textarea>
+          <label
+            for="message"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Your Message:</label
+          >
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            class="w-full border border-gray-300 p-2 rounded-md"
+            required
+          ></textarea>
         </div>
-  
-        <button type="button" onclick="submitContact()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
-  
+
+        <button
+          type="button"
+          onclick="submitContact()"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+        >
+          Submit
+        </button>
+
         <!-- Display submission message here -->
         <div id="submissionMessage" class="text-green-500 mt-2"></div>
       </form>
     </div>
 
-
     <!-- contact us script -->
     <script>
       async function submitContact() {
-     const name = document.getElementById("name").value;
-     const email = document.getElementById("email").value;
-     const message = document.getElementById("message").value;
-   
-     try {
-       const response = await fetch("http://localhost:3000/contact-us", {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify({ name, email, message }),
-       });
-   
-       if (response.ok) {
-         // Show "Submitted" message
-         document.getElementById("submissionMessage").innerText = "Message submitted successfully";
-   
-         // Optionally, you can reset the form after successful submission
-         document.getElementById("contactForm").reset();
-   
-         // Forward to index.html after a brief delay (e.g., 2 seconds)
-         setTimeout(() => {
-           window.location.href = "index.html"; // Change to the correct URL
-         }, 2000);
-       } else {
-         console.error("Failed to submit message. Server responded with:", response.status, response.statusText);
-         alert("Failed to submit message. Please try again later.");
-       }
-     } catch (error) {
-       console.error("Error submitting message:", error);
-       alert("Error submitting message. Please try again later.");
-     }
-   }
-     </script>
-   
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        try {
+          const response = await fetch("http://localhost:3000/contact-us", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email, message }),
+          });
+
+          if (response.ok) {
+            // Show "Submitted" message
+            document.getElementById("submissionMessage").innerText =
+              "Message submitted successfully";
+
+            // Optionally, you can reset the form after successful submission
+            document.getElementById("contactForm").reset();
+
+            // Forward to index.html after a brief delay (e.g., 2 seconds)
+            setTimeout(() => {
+              window.location.href = "index.html"; // Change to the correct URL
+            }, 2000);
+          } else {
+            console.error(
+              "Failed to submit message. Server responded with:",
+              response.status,
+              response.statusText
+            );
+            alert("Failed to submit message. Please try again later.");
+          }
+        } catch (error) {
+          console.error("Error submitting message:", error);
+          alert("Error submitting message. Please try again later.");
+        }
+      }
+    </script>
+
     <!-- Container for demo purpose -->
 
     <script
