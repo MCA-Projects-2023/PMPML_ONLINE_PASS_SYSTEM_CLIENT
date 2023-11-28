@@ -11,19 +11,32 @@ public class DatabaseConnection {
 
     private static Connection connection;
 
-    public static Connection connect() {
+    // Private constructor to prevent instantiation
+    private DatabaseConnection() {
+    }
+
+    // Initialize the database connection once
+    public static void initialize() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
             System.out.println("Connected to the database.");
-            return connection;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to connect to the database.");
         }
     }
 
-    public static void disconnect() {
+    // Get the existing connection
+    public static Connection getConnection() {
+        if (connection == null) {
+            throw new IllegalStateException("Database connection not initialized.");
+        }
+        return connection;
+    }
+
+    // Close the connection
+    public static void closeConnection() {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
