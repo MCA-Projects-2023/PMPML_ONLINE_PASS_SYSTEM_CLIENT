@@ -1,0 +1,36 @@
+# Maven
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+
+# Logs
+*.log
+
+# Compiled class file
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# User-specific files
+*.iml
+*.ipr
+*.iws
+*.DS_Store
+
+# Maven Wrapper
+.mvn/wrapper/
+
+# Gradle
+.gradle/
+
+# Miscellaneous
+bin/
