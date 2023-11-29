@@ -366,10 +366,11 @@
                   />
 
                   <a
-                    href="businfo.html"
-                    class="bg-blue-500 text-white p-1 rounded-b-lg flex justify-center items-center"
+                    
+                    class="bg-blue-500 text-white cursor-pointer p-1 rounded-b-lg flex justify-center items-center"
                     type="button"
                     id="Bus_input_button"
+                    onclick="on_show_details()"
                   >
                     <div>SHOW DETAILS</div>
                   </a>
@@ -507,6 +508,29 @@
           </div>
         </div>
       </div>
+    </div>
+
+
+  <div class="mx-4 my-8 p-8 bg-white rounded-lg shadow-md text-center">
+
+      
+        <h1 class="text-3xl font-bold mb-4">About Us</h1>
+       
+    </div>
+    <div class="mx-32 my-8 p-8 bg-white rounded-lg shadow-md flex">
+
+        <!-- First Part with Image -->
+        <div class="flex-1 h-4/6 flex items-center justify-center ">
+            <img src="images/employee/boss1.png" alt="Image" class="max-w-5/6 h-4/6 rounded">
+        </div>
+
+        <!-- Second Part with Heading, Subheading, and Paragraph -->
+        <div class="flex-1 h-4/6 ml-4">
+            <h1 class="text-3xl font-bold mb-2">डॉ. संजय कोलते भा. प्र. से.</h1>
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">मा. अध्यक्ष व व्यवस्थापकीय संचालक, पीएमपीएमएल पुणे</h2>
+            <p class="text-gray-600">शहरी आणि ग्रामीण भागातील नागरिकांना आर्थिक संधीमध्ये सहभागी होण्याचे आणि विशेषतः विद्यार्थिनी व महिलांसाठी आवश्यक असलेल्या सेवांचा लाभ घेण्यासाठी एक स्थायी, कार्यक्षम, सुरक्षित आणि देखरेख ठेवणारी सार्वजनिक वाहतुकीची सुविधा उपलब्ध करणे.</p>
+        </div>
+
     </div>
 
     <!-- Gallary -->
@@ -702,7 +726,7 @@
       });
 
       // On Show Details Handler
-      let bus_number_entered = 0;
+      let bus_number_entered = 118;
       function onshowdetails_handler() {
         var myButton = document.getElementById("Bus_input_button");
 
@@ -715,6 +739,9 @@
       }
       function on_input_value_change() {
         bus_number_entered = document.getElementById("bus_number_input").value;
+      }
+      function on_show_details(){
+         window.location.href = `businfo.html?bus_number=${bus_number_entered}`;
       }
     </script>
 
